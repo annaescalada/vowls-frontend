@@ -1,0 +1,35 @@
+import React from 'react'
+import styled from 'styled-components'
+
+const LogoText = styled.p`
+    font-family: 'Concert One', cursive;
+    font-size:3.5em;
+    text-transform: uppercase;
+    color: #5cc1a5;
+    text-align: center;
+    margin:6% 0 0 0;
+    padding:0;
+    line-height:1em;
+    letter-spacing:-2.5px;
+`;
+
+const SubText = styled.p`
+    font-size:1.2em;
+    color: #707070;
+    text-align: center;
+    padding:0;
+    margin-bottom: 20%;
+`;
+
+
+
+function Logo() {
+    return (
+        <div>
+            <LogoText>Vowls</LogoText>
+            <SubText>veggie bowls</SubText>
+        </div>
+    )
+}
+
+export default Logo

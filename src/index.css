@@ -1,13 +1,53 @@
+@import url('https://fonts.googleapis.com/css?family=Nova+Round|Raleway:300,400,600&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Concert+One&display=swap');
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  font-family: 'Raleway', sans-serif!important;
+  display: flex;
+  justify-content: center;
+  font-size: 20px!important;
+  color: #000!important;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+.button, button, input[type='button'], input[type='reset'], input[type='submit'] {
+  background-color:#c25c78!important;
+  border-color: #c25c78!important;
+  text-transform: none!important;
+  font-weight: 300!important;
+  font-family: 'Raleway', sans-serif!important;
+  font-size: 20px!important;
+  width:100%;
+  height: 60px!important;
+  border-radius: 10px!important;
+}
+
+input[type='text'], input[type='email'], input[type='password'] {
+  font-size: 20px!important;
+  width:100%;
+  height: 50px!important;
+  font-family: 'Raleway', sans-serif!important;
+  padding: 5%!important;
+  border-left: none!important;
+  border-top: none!important;
+  border-right: none!important;
+  border-radius: 0px!important;
+  background-color: white!important;
+  color: #000!important;
+}
+
+a {
+  color: #c25c78!important;
+}
+
+.container {
+  padding: 0 10%!important;
+}
+
+.error {
+  background: #c25c7847;
+  padding: 6%;
+  font-size: 0.9em;
+  border-radius: 10px;
+  color: #707070;
 }

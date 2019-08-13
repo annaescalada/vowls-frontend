@@ -1,6 +1,12 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import withAuth from '../components/withAuth.js';
+import styled from 'styled-components'
+import { ImgContainer, Vowl1 } from './Login.js';
+
+const ErrorSC = styled.p`
+  color: red
+`;
 
 class Signup extends Component {
 
@@ -24,7 +30,7 @@ class Signup extends Component {
         });
       })
       .catch( error => {
-        this.setState ({error: 'Ha ocurrido un error, por favor inténtalo de nuevo.'});
+        this.setState ({error: 'Ha habido un error, por favor inténtalo de nuevo.'});
         console.log(error);
       })
   }
@@ -35,21 +41,23 @@ class Signup extends Component {
   }
 
   render() {
-    const { username, password } = this.state;
+    const { username, password, error } = this.state;
     return (
       <>
         <form onSubmit={this.handleFormSubmit}>
-          <label htmlFor='username'>Username:</label>
-          <input id='username' type='text' name='username' value={username} onChange={this.handleChange}/>
-          <label htmlFor='password'>Password:</label>
+          <input required id='username' type='email' name='username' value={username} onChange={this.handleChange}/>
           <input id='password' type='password' name='password' value={password} onChange={this.handleChange} />
-          <input type='submit' value='Signup' />
+          <input type='submit' value='Crear una cuenta' />
         </form>
 
-        <p>Already have account? 
-          <Link to={'/login'}> Login</Link>
-        </p>
+        {error? <p className='error'>{error}</p>: null}
 
+        <p>Ya tienes una cuenta? 
+          <Link to={'/'}> Iniciar sesión</Link>
+        </p>
+        <ImgContainer>
+          <Vowl1 src='images/vowl1.jpg'/>
+        </ImgContainer>
       </>
     )
   }

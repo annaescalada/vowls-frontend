@@ -2,18 +2,18 @@ import React from 'react';
 import {Route, Redirect} from 'react-router-dom';
 import withAuth from './withAuth';
 
-const PrivateRoute = (props) => {
+const PrivateRegistrarionRoute = (props) => {
   console.log(props)
   const { user, isLoggedIn, component: Component, ...rest} = props;
   if (isLoggedIn) {
     return (
       <>
-        { user.complete ? <Route exact
+        { !user.complete ? <Route exact
           render={(props) => {
             return <Component {...props}/>
           }}
           {...rest}
-        /> : <Redirect to='/nutriform' />}
+        /> : <Redirect to='/vowls' />}
       </>
     )
   } else {
@@ -21,4 +21,4 @@ const PrivateRoute = (props) => {
   }
 }
 
-export default withAuth(PrivateRoute);
+export default withAuth(PrivateRegistrarionRoute);

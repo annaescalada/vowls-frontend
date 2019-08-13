@@ -12,10 +12,8 @@ const AnonRoute = (props) => {
           return <Component {...props}/>
         }}
         {...rest}
-      /> : <Redirect to='/private' />}
+      /> : <Redirect to='/vowls' />}
     </>
-
-   
   );
 }
 
