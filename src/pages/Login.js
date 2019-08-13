@@ -1,23 +1,26 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-
-import auth from '../services/auth-service';
+import withAuth from '../components/withAuth';
 
 class Login extends Component {
   state = {
     username: '',
     password: '',
+    error:'',
   }
 
   handleFormSubmit = (event) => {
     event.preventDefault();
     const { username, password } = this.state
 
-    auth.login({ username, password })
+    this.props.login({ username, password })
     .then( (user) => {
       console.log(user)
     })
-    .catch( error => console.log(error) )
+    .catch( error => {
+      this.setState ({error: 'Ha ocurrido un error, por favor inténtalo de nuevo.'});
+      console.log(error);
+    })
   }
 
   handleChange = (event) => {  
@@ -26,7 +29,7 @@ class Login extends Component {
   }
 
   render() {
-    const { username, password } = this.state;
+    const { username, password, error } = this.state;
     return (
       <>
         <form onSubmit={this.handleFormSubmit}>
@@ -37,12 +40,14 @@ class Login extends Component {
           <input type='submit' value='Login' />
         </form>
 
-        <p>You don't have an accout yet?
-            <Link to={'/signup'}> Signup</Link>
+        {error? <p>{error}</p>: null}
+
+        <p>Aún no te has registrado?
+            <Link to={'/signup'}> Crear una cuenta</Link>
         </p>
       </>
     )
   }
 }
 
-export default Login;
+export default withAuth(Login);

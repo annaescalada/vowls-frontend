@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-
-import auth from '../services/auth-service';
+import withAuth from '../components/withAuth.js';
 
 class Signup extends Component {
 
   state = {
     username: '',
     password: '',
+    error:'',
   };
 
   handleFormSubmit = (event) => {
@@ -15,7 +15,7 @@ class Signup extends Component {
     const username = this.state.username;
     const password = this.state.password;
 
-    auth.signup({ username, password })
+    this.props.signup({ username, password })
       .then( (user) => {
         console.log(user)
         this.setState({
@@ -23,7 +23,10 @@ class Signup extends Component {
             password: '',
         });
       })
-      .catch( error => console.log(error) )
+      .catch( error => {
+        this.setState ({error: 'Ha ocurrido un error, por favor inténtalo de nuevo.'});
+        console.log(error);
+      })
   }
 
   handleChange = (event) => {  
@@ -52,4 +55,4 @@ class Signup extends Component {
   }
 }
 
-export default Signup;
+export default withAuth(Signup);

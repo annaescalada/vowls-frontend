@@ -3,7 +3,8 @@ import axios from 'axios';
 class AuthService {
   constructor() {
     this.auth = axios.create({
-      baseURL: 'http://localhost:4000'
+      baseURL: 'http://localhost:4000',
+      withCredentials: true,
     })
   }
 
@@ -28,8 +29,25 @@ class AuthService {
     return this.auth.get('/auth/me')
     .then(response => response.data)
   }
+
+  update(newUser) {
+    return this.auth.update('/auth/update', newUser)
+    .then(response => response.data)
+  }
+
+
+  changePassword(newPassword) {
+    return this.update('/auth/change-password', { password: newPassword })
+    .then(response => response.data)
+  }
+
+  delete() {
+    return this.delete('/auth/delete')
+    .then(response => response.data)
+  }
+  //delete()
 }
 
-const auth = new AuthService();
+const authService = new AuthService();
 
-export default auth
+export default authService;
