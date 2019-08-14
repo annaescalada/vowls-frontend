@@ -42,10 +42,11 @@ class AuthProvider extends Component {
 
   userUpdate = (newUser) => {
     return authService.update(newUser)
-    .then(() => {
-      this.setState({
-        user: newUser,
-      })
+    .then((user) => {
+        this.setState({
+          user: user,
+        });
+        console.log(user);
     })
   }
 

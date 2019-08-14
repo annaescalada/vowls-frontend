@@ -27,7 +27,7 @@ class App extends Component {
       <Router>
         <AuthProvider>
           <div className="container">
-            <Logo />
+          <Logo />
             <main>
             <Switch>
               <AnonRoute exact path="/" component={Login} />
@@ -40,9 +40,11 @@ class App extends Component {
               <Route component={NotFound}/>
       
             </Switch>
-            {/* Navbar render condicional a loggedIN */}
             </main>
           </div>
+          <PrivateRoute>
+            <Navbar></Navbar>
+          </PrivateRoute>
         </AuthProvider>
       </Router>
     )

@@ -19,6 +19,7 @@ const SubText = styled.p`
     text-align: center;
     padding:0;
     margin-top:3%;
+    margin-bottom: 20%;
 `;
 
 

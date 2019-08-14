@@ -8,36 +8,23 @@ const InputSC = styled.input`
 
 const ImgContainer2SC = styled.div`
   position: relative;
-  left:-100px;
-  height: 200px;
-  overflow: hidden;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  bottom:0;
+  left: -120px;
+  height: 240px;
+`
+
+const Vowl2 = styled.img`
+  height: 100%;
+  transform: rotate(180deg);
 `
 
 const NutriTitleSC = styled.p `
   font-weight: 600;
 `
-const Vowl2 = styled.img`
-  Xposition:absolute;
-  Xwidth: 100%;
-  height: 100%;
-  transform: rotate(180deg);
-`
 
 const GenderSC = styled.div`
   display:flex;
-  justify-content: space-around;
-  align-items: center;
-  align-content:center;
-`
-
-const ActivitySC = styled.div`
-  display:flex;
-  flex-direction:column;
-
+  justify-content: space-between;
+  width:100%;
 `
 
 const FieldsetSC = styled.fieldset`
