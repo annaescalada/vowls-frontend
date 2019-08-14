@@ -19,7 +19,6 @@ import Meals from './pages/Meals.js';
 import AuthProvider from './contexts/auth-context.js';
 
 import './App.css';
-import 'milligram';
 import PrivateRegistrationRoute from './components/PrivateRegistrationRoute.js';
 
 class App extends Component {
@@ -29,6 +28,7 @@ class App extends Component {
         <AuthProvider>
           <div className="container">
             <Logo />
+            <main>
             <Switch>
               <AnonRoute exact path="/" component={Login} />
               <AnonRoute exact path="/signup" component={Signup} />
@@ -41,6 +41,7 @@ class App extends Component {
       
             </Switch>
             {/* Navbar render condicional a loggedIN */}
+            </main>
           </div>
         </AuthProvider>
       </Router>

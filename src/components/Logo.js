@@ -9,7 +9,7 @@ const LogoText = styled.p`
     text-align: center;
     margin:6% 0 0 0;
     padding:0;
-    line-height:1em;
+    line-height:0.8em;
     letter-spacing:-2.5px;
 `;
 
@@ -18,7 +18,7 @@ const SubText = styled.p`
     color: #707070;
     text-align: center;
     padding:0;
-    margin-bottom: 20%;
+    margin-top:3%;
 `;
 
 

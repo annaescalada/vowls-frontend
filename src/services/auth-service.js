@@ -31,21 +31,23 @@ class AuthService {
   }
 
   update(newUser) {
-    return this.auth.update('/auth/update', newUser)
-    .then(response => response.data)
+    return this.auth.put('/auth/update', newUser)
+    .then(({ data }) => data);
   }
 
-
   changePassword(newPassword) {
-    return this.update('/auth/change-password', { password: newPassword })
-    .then(response => response.data)
+    return this.auth.put('/auth/change-password', newPassword)
+    .then((data) => {
+      console.log("in service", data);
+      return data;
+    })
   }
 
   delete() {
-    return this.delete('/auth/delete')
+    return this.auth.delete('/auth/delete')
     .then(response => response.data)
   }
-  //delete()
+
 }
 
 const authService = new AuthService();

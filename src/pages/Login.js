@@ -5,16 +5,13 @@ import styled from 'styled-components'
 
 export const ImgContainer = styled.div`
   position: relative;
-  width:100%;
   height:300px;
-  overflow: hidden;
-  display:flex;
+  height: 290px;
+  top: 30px;
 `
 
-
 export const Vowl1 = styled.img`
-  position: absolute;
-  top:50px
+  width:100%;
 `
 
 class Login extends Component {

@@ -1,24 +1,27 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom';
 import withAuth from '../components/withAuth';
 
 class ChangePassword extends Component {
     state = {
-        username: '',
-        password: '',
-        error:'',
+        username: this.props.user.email,
+        password: '********'
+,       newPassword: '',
+        editing: false,
+        error: '',
       }
     
       handleFormSubmit = (event) => {
         event.preventDefault();
-        const { username, password } = this.state
+        const { newPassword } = this.state
     
-        this.props.login({ username, password })
-        .then( (user) => {
-          console.log(user)
+        this.props.changePassword({ password: newPassword})
+        .then((user) => {
+          console.log("ooo", user)
+          console.log(this.props.user)
+          this.setState({editing:false})
         })
         .catch( error => {
-          this.setState ({error: 'Ha ocurrido un error, por favor inténtalo de nuevo.'});
+        this.setState ({error: 'Ha habido un error, por favor inténtalo de nuevo.'});
           console.log(error);
         })
       }
@@ -27,24 +30,37 @@ class ChangePassword extends Component {
         const {name, value} = event.target;
         this.setState({[name]: value});
       }
+
+      handleEditPassword = () => {
+          this.setState ({
+              editing: true
+          });
+      }
+
+      handleCancel = () => {
+          this.setState({
+              editing:false
+          });
+      }
     
       render() {
-        const { username, password, error } = this.state;
+        const { username, password, newPassword, editing, error } = this.state;
+        console.log(this.props)
         return (
           <>
             <form onSubmit={this.handleFormSubmit}>
-              <label htmlFor='username' >Username:</label>
-              <input id='username' type='text' name='username' value={username} onChange={this.handleChange}/>
-              <label htmlFor='password'>Password:</label>
-              <input id='password' type='password' name='password' value={password} onChange={this.handleChange} />
-              <input type='submit' value='Login' />
+              <input id='username' type='text' name='username' value={username} onChange={this.handleChange} disabled/>
+              {editing ?
+              <input id='newPassword' type='password' name='newPassword' value={newPassword} onChange={this.handleChange}/> :
+              <input id='password' type='password' name='password' value={password} onChange={this.handleChange} disabled={true} />
+              }
+              {editing ? <input type='submit' value='Guardar' /> : null}
             </form>
-    
-            {error? <p>{error}</p>: null}
-    
-            <p>Aún no te has registrado?
-                <Link to={'/signup'}> Crear una cuenta</Link>
-            </p>
+            {!editing? <button onClick={this.handleEditPassword}>Editar contraseña</button> :null}
+            {error? <p className='error'>{error}</p>: null}
+            {editing ? <p onClick= {this.handleCancel}>Cancelar</p> :null}
+            <p onClick={this.props.logout} >Cerrar sesión</p>
+            <p onClick={this.props.delete}>Eliminar cuenta</p>
           </>
         )
       }

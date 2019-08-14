@@ -1,47 +1,80 @@
 @import url('https://fonts.googleapis.com/css?family=Nova+Round|Raleway:300,400,600&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Concert+One&display=swap');
 
+html {
+  height: 100vh;
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
 body {
+  height:100%;
   margin: 0;
-  font-family: 'Raleway', sans-serif!important;
+  padding:0;
+  font-family: 'Raleway', sans-serif;
   display: flex;
   justify-content: center;
-  font-size: 20px!important;
-  color: #000!important;
-}
-
-.button, button, input[type='button'], input[type='reset'], input[type='submit'] {
-  background-color:#c25c78!important;
-  border-color: #c25c78!important;
-  text-transform: none!important;
-  font-weight: 300!important;
-  font-family: 'Raleway', sans-serif!important;
-  font-size: 20px!important;
-  width:100%;
-  height: 60px!important;
-  border-radius: 10px!important;
-}
-
-input[type='text'], input[type='email'], input[type='password'] {
-  font-size: 20px!important;
-  width:100%;
-  height: 50px!important;
-  font-family: 'Raleway', sans-serif!important;
-  padding: 5%!important;
-  border-left: none!important;
-  border-top: none!important;
-  border-right: none!important;
-  border-radius: 0px!important;
-  background-color: white!important;
-  color: #000!important;
+  font-size: 20px;
+  color: #000;
+  line-height: 30px;
 }
 
 a {
-  color: #c25c78!important;
+  color: #c25c78;
 }
 
+div {
+  width: 100%;
+  height:100%
+}
+
+.button, button, input[type='button'], input[type='reset'], input[type='submit'] {
+  background-color:#c25c78;
+  color:white;
+  border: none;
+  text-transform: none;
+  font-weight: 300;
+  font-family: 'Raleway', sans-serif;
+  font-size: 20px;
+  width:100%;
+  height: 60px;
+  border-radius: 10px;
+  margin: 5% 0 5% 0;
+}
+
+button.reversed {
+  color:#c25c78;
+  background-color:white;
+  border: 1px solid #c25c78;
+}
+
+input[type='text'], input[type='email'], input[type='password'], input[type='number'] {
+  font-size: 20px;
+  width:100%;
+  height: 50px;
+  font-family: 'Raleway', sans-serif;
+  padding: 5%;
+  border-left: none;
+  border-top: none;
+  border-right: none;
+  border-radius: 0px;
+  background-color: white;
+  color: #000;
+  margin: 5% 0 5% 0;
+}
+
+input[type='text']:disabled, input[type='email']:disabled, input[type='password']:disabled {
+  background-color:rgb(223, 223, 223);
+  color: rgb(94, 94, 94);
+}
+
+
 .container {
-  padding: 0 10%!important;
+  padding: 0 10% 0 10%;
+  display: grid;
+  grid-template-rows: 1fr;
 }
 
 .error {
@@ -50,4 +83,16 @@ a {
   font-size: 0.9em;
   border-radius: 10px;
   color: #707070;
+}
+
+fieldset {
+  border:none;
+}
+
+label {
+  margin: 5% 0;
+  text-align: center;
+}
+input[type='radio']:checked + label {
+  color: #c25c78;
 }

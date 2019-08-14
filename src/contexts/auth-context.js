@@ -53,8 +53,9 @@ class AuthProvider extends Component {
     return authService.changePassword(newPassword)
     .then((user) => {
       this.setState({
-        user
+        user: user,
       })
+      return user;
     })
   }
 
@@ -100,7 +101,7 @@ class AuthProvider extends Component {
                 logout: this.userLogout,
                 update: this.userUpdate,
                 changePassword: this.userChangePassword,
-                delete: this.userDelete
+                deleteUser: this.userDelete
               }
             }>
               {this.props.children}
