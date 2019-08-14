@@ -93,6 +93,9 @@ label {
   margin: 5% 0;
   text-align: center;
 }
+
 input[type='radio']:checked + label {
-  color: #c25c78;
+  color:#c25c78;
+  background-color:white;
+  border-bottom: 1px solid #707070;
 }

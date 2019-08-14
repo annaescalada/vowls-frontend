@@ -51,10 +51,10 @@ class NutriForm extends Component {
     error:'',
     name: '',
     age: '',
-    gender: '',
+    gender: 'female',
     weight: '',
     height: '',
-    activity:'',
+    activity:1,
   }
 
   handleBack = (event) => {
@@ -85,9 +85,28 @@ class NutriForm extends Component {
 
   handleFormSubmit = (event) => {
     event.preventDefault();
-    const { username, password } = this.state
+    const { name, age, gender, weight, height, activity } = this.state
 
-    this.props.login({ username, password })
+    // Cálculo IMC
+    const IMC = ((weight / (height * height)) * 10000).toFixed(2);
+
+    // Cálculo GED
+    let GED = 0;
+    if (gender === 'female') {
+      GED = (((10 * weight) + (6.25 * height) - (5 * age) - 161) * activity).toFixed(0)
+    } else {
+      GED =( ((10 * weight) + (6.25 * height) - (5 * age) + 5) * activity).toFixed(0);
+    }
+
+    // Cálculo portion
+    let portion = 1;
+    if (GED >= 2100) {
+        portion = 1.5;
+    } else if (GED >= 3000) {
+        portion = 2;
+    }
+
+    this.props.update({ name, age, gender, weight, height, activity, GED, IMC, portion })
     .then( (user) => {
       console.log(user)
     })
@@ -115,13 +134,17 @@ class NutriForm extends Component {
         <fieldset>
           <NutriTitleSC>Cuál es tu género?</NutriTitleSC>
           <GenderSC>
-          {gender.length ?
-          <input hidden id='genderFemale' type='radio' name='gender' value='Mujer' onChange={this.handleChange}/>
-          : <input hidden id='genderFemale' type='radio' name='gender' value='Mujer' onChange={this.handleChange} checked/>}
-          <label htmlFor='genderFemale' onChange={console.log('clicked')}>
+          {!gender.length || gender === 'female' ?
+          <input hidden id='genderFemale' type='radio' name='gender' value='female' onChange={this.handleChange} checked/>
+          : <input hidden id='genderFemale' type='radio' name='gender' value='female' onChange={this.handleChange}/>
+          }
+          <label htmlFor='genderFemale'>
             Mujer
           </label>
-            <input hidden id='genderMale' type='radio' name='gender' value='Hombre' onChange={this.handleChange}/>
+          {gender ==='male' ?
+            <input hidden id='genderMale' type='radio' name='gender' value='male' onChange={this.handleChange} checked/>
+            :<input hidden id='genderMale' type='radio' name='gender' value='male' onChange={this.handleChange}/>
+          } 
           <label htmlFor='genderMale'>
             Hombre
           </label>
@@ -135,21 +158,31 @@ class NutriForm extends Component {
         {formPage === 2 ?
         <FieldsetSC>
           <NutriTitleSC>Cuál es tu nivel de actividad física diaria?</NutriTitleSC>
-          {activity.length ?
-          <InputSC hidden id='activity1' type='radio' name='activity' value='1,5' onChange={this.handleChange}/> 
-          : <InputSC hidden id='activity1' type='radio' name='activity' value='1,5' onChange={this.handleChange} checked/>}
+          {!activity.length || activity === 1.4 ?
+            <InputSC hidden id='activity1' type='radio' name='activity' value='1.4' onChange={this.handleChange} checked/> 
+            : <InputSC hidden id='activity1' type='radio' name='activity' value='1.4' onChange={this.handleChange}/>
+          }
           <label htmlFor='activity1'>
           Sedentario
           </label>
-          <InputSC hidden id='activity2' type='radio' name='activity' value='1,8' onChange={this.handleChange}/>
+          {activity === '1.6' ?
+            <InputSC hidden id='activity2' type='radio' name='activity' value='1.6' onChange={this.handleChange} checked/>
+            :<InputSC hidden id='activity2' type='radio' name='activity' value='1.6' onChange={this.handleChange}/>
+          }
           <label htmlFor='activity2'>
           Leve
           </label>
-          <InputSC hidden id='activity3' type='radio' name='activity' value='2' onChange={this.handleChange}/>
+          {activity === '2' ?
+            <InputSC hidden id='activity3' type='radio' name='activity' value='2' onChange={this.handleChange} checked/>
+            :<InputSC hidden id='activity3' type='radio' name='activity' value='2' onChange={this.handleChange}/>
+          }
           <label htmlFor='activity3'>
           Moderado
           </label>
-          <InputSC hidden id='activity4' type='radio' name='activity' value='2,5' onChange={this.handleChange}/>
+          {activity === '2.4' ?
+            <InputSC hidden id='activity4' type='radio' name='activity' value='2.4' onChange={this.handleChange} checked/>
+            :<InputSC hidden id='activity4' type='radio' name='activity' value='2.4' onChange={this.handleChange}/>
+          }
           <label htmlFor='activity4'>
           Muy activo
           </label>

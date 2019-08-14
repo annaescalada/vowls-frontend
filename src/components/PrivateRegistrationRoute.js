@@ -7,7 +7,7 @@ const PrivateRegistrarionRoute = (props) => {
   if (isLoggedIn) {
     return (
       <>
-        { !user.complete ? <Route exact
+        { !user.completed ? <Route exact
           render={(props) => {
             return <Component {...props}/>
           }}
