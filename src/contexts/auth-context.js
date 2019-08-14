@@ -46,7 +46,6 @@ class AuthProvider extends Component {
         this.setState({
           user: user,
         });
-        console.log(user);
     })
   }
 

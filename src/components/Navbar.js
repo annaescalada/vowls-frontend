@@ -8,7 +8,7 @@ const NavDivSC = styled.div`
   display:flex;
   justify-content: center;
   flex-direction:column;
-  padding:5% 0 7% 0;
+  padding:30% 0 20% 0;
 `
 const MenuPSC = styled.p`
  font-size:15px;
@@ -40,7 +40,7 @@ class Navbar extends Component {
               <div>
               <LogoImgSC src="../images/Menu-icons/Food-icon-grey.png" alt=""/>
               </div>
-              <MenuPSC>vowls</MenuPSC>
+              <MenuPSC>foods</MenuPSC>
             </NavDivSC>
           </NavLink>
 
@@ -49,16 +49,16 @@ class Navbar extends Component {
               <div>
               <LogoImgSC src="../images/Menu-icons/Meal-icon-grey.png" alt=""/>
               </div>
-              <MenuPSC>vowls</MenuPSC>
+              <MenuPSC>meals</MenuPSC>
             </NavDivSC>
           </NavLink>
 
-          <NavLink to='/meals'>
+          <NavLink to='/profile'>
             <NavDivSC>
               <div>
               <LogoImgSC src="../images/Menu-icons/Profile-icon-grey.png" alt=""/>
               </div>
-              <MenuPSC>vowls</MenuPSC>
+              <MenuPSC>profile</MenuPSC>
             </NavDivSC>
           </NavLink>
       </nav>
