@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
 import withAuth from '../components/withAuth.js';
-import ProgressNutriBar from '../components/ProgressNutriBar.js';
+import Loading from '../components/Loading';
 
 class Vowls extends Component {
   render() {
     return (
       <div>
-        <h1>This is the Vowls</h1>
+        <Loading text1='Generando un' span='vowl' text2='saludable, equilibrado, completo y delicioso!'></Loading>
       </div>
     )
   }

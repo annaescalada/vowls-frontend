@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import withAuth from '../components/withAuth.js';
 import styled from 'styled-components'
 import ProgressNutriBar from '../components/ProgressNutriBar.js';
+import {updateInfo} from '../helpers/updateInfo'
 
  export const InputSC = styled.input`
   color: #c25c78!important;
@@ -73,27 +74,8 @@ class NutriForm extends Component {
 
   handleFormSubmit = (event) => {
     event.preventDefault();
-    const { name, age, gender, weight, height, activity } = this.state
-
-    // Cálculo IMC
-    const IMC = ((weight / (height * height)) * 10000).toFixed(2);
-
-    // Cálculo GED
-    let GED = 0;
-    if (gender === 'female') {
-      GED = (((10 * weight) + (6.25 * height) - (5 * age) - 161) * activity).toFixed(0)
-    } else {
-      GED =( ((10 * weight) + (6.25 * height) - (5 * age) + 5) * activity).toFixed(0);
-    }
-
-    // Cálculo portion
-    let portion = 1;
-    if (GED >= 2100) {
-        portion = 1.5;
-    } else if (GED >= 3000) {
-        portion = 2;
-    }
-
+    const { name, age, gender, weight, height, activity } = this.state;
+    const {GED, IMC, portion} = updateInfo(age, gender, weight, height, activity);
     this.props.update({ name, age, gender, weight, height, activity, GED, IMC, portion })
     .then( (user) => {
       console.log(user)
