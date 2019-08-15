@@ -1,5 +1,10 @@
 import React, { Component } from 'react'
 import withAuth from '../components/withAuth';
+import styled from 'styled-components'
+
+const CancelSC = styled.p`
+  text-align: center;
+`
 
 class ChangePassword extends Component {
     state = {
@@ -16,8 +21,6 @@ class ChangePassword extends Component {
     
         this.props.changePassword({ password: newPassword})
         .then((user) => {
-          console.log("ooo", user)
-          console.log(this.props.user)
           this.setState({editing:false})
         })
         .catch( error => {
@@ -45,7 +48,6 @@ class ChangePassword extends Component {
     
       render() {
         const { username, password, newPassword, editing, error } = this.state;
-        console.log(this.props)
         return (
           <>
             <form onSubmit={this.handleFormSubmit}>
@@ -58,9 +60,9 @@ class ChangePassword extends Component {
             </form>
             {!editing? <button onClick={this.handleEditPassword}>Editar contraseña</button> :null}
             {error? <p className='error'>{error}</p>: null}
-            {editing ? <p onClick= {this.handleCancel}>Cancelar</p> :null}
-            <p onClick={this.props.logout} >Cerrar sesión</p>
-            <p onClick={this.props.delete}>Eliminar cuenta</p>
+            {editing ? <CancelSC onClick= {this.handleCancel}>Cancelar</CancelSC> :null}
+            <button className='reversed' onClick={this.props.logout} >Cerrar sesión</button>
+            <button className='reversed' onClick={this.props.delete}>Eliminar cuenta</button>
           </>
         )
       }

@@ -117,3 +117,7 @@ nav div {
   width:auto;
   align-items: center;
 }
+
+.selected p {
+  color:#c25c78;
+}

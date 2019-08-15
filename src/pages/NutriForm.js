@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import withAuth from '../components/withAuth.js';
 import styled from 'styled-components'
+import ProgressNutriBar from '../components/ProgressNutriBar.js';
 
 const InputSC = styled.input`
   color: #c25c78!important;
@@ -108,6 +109,7 @@ class NutriForm extends Component {
     console.log(formPage, name, age, gender, weight, height, activity);
     return (
       <>
+      <ProgressNutriBar num={formPage}/>
       <form action="">
         {formPage === 0 ?
         <fieldset>
@@ -144,7 +146,7 @@ class NutriForm extends Component {
 
         {formPage === 2 ?
         <FieldsetSC>
-          <NutriTitleSC>Cuál es tu nivel de actividad física diaria?</NutriTitleSC>
+          <NutriTitleSC>Cuál es tu nivel de actividad física?</NutriTitleSC>
           {!activity.length || activity === 1.4 ?
             <InputSC hidden id='activity1' type='radio' name='activity' value='1.4' onChange={this.handleChange} checked/> 
             : <InputSC hidden id='activity1' type='radio' name='activity' value='1.4' onChange={this.handleChange}/>
