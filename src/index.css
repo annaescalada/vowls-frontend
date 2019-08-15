@@ -118,6 +118,6 @@ nav div {
   align-items: center;
 }
 
-.selected p {
+.selected p, span {
   color:#c25c78;
 }

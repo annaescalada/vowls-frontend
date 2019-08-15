@@ -3,7 +3,7 @@ import withAuth from '../components/withAuth.js';
 import styled from 'styled-components'
 import ProgressNutriBar from '../components/ProgressNutriBar.js';
 
-const InputSC = styled.input`
+ export const InputSC = styled.input`
   color: #c25c78!important;
 `;
 
@@ -110,7 +110,7 @@ class NutriForm extends Component {
     return (
       <>
       <ProgressNutriBar num={formPage}/>
-      <form action="">
+      <form>
         {formPage === 0 ?
         <fieldset>
           <NutriTitleSC>Cómo te llamas?</NutriTitleSC>
