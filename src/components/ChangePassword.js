@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import withAuth from '../components/withAuth';
 import styled from 'styled-components'
 
-const CancelSC = styled.p`
+export const CancelSC = styled.p`
   text-align: center;
 `
 
@@ -34,15 +34,17 @@ class ChangePassword extends Component {
         this.setState({[name]: value});
       }
 
-      handleEditPassword = () => {
+      handleEditButton = () => {
           this.setState ({
-              editing: true
+              editing: true,
+              error:''
           });
       }
 
       handleCancel = () => {
           this.setState({
-              editing:false
+              editing:false,
+              error:''
           });
       }
     
@@ -50,6 +52,7 @@ class ChangePassword extends Component {
         const { username, password, newPassword, editing, error } = this.state;
         return (
           <>
+            <p><b>Información de la cuenta:</b></p>
             <form onSubmit={this.handleFormSubmit}>
               <input id='username' type='text' name='username' value={username} onChange={this.handleChange} disabled/>
               {editing ?
@@ -58,7 +61,7 @@ class ChangePassword extends Component {
               }
               {editing ? <input type='submit' value='Guardar' /> : null}
             </form>
-            {!editing? <button onClick={this.handleEditPassword}>Editar contraseña</button> :null}
+            {!editing? <button onClick={this.handleEditButton}>Editar contraseña</button> :null}
             {error? <p className='error'>{error}</p>: null}
             {editing ? <CancelSC onClick= {this.handleCancel}>Cancelar</CancelSC> :null}
             <button className='reversed' onClick={this.props.logout} >Cerrar sesión</button>

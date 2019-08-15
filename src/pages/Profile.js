@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import withAuth from '../components/withAuth.js';
-import ChangePassword from '../components/ChangePassword.js';
+import ChangePassword, { CancelSC } from '../components/ChangePassword.js';
 import styled from 'styled-components'
 import { InputSC } from './NutriForm.js';
 
@@ -9,6 +9,10 @@ const DataContainerSC = styled.div`
   border-radius: 10px;
   padding:6%;
   text-align:center;
+`;
+
+const ActivitySelectSC = styled.select`
+  color: #c25c78!important;
 `;
 
 class Profile extends Component {
@@ -23,14 +27,106 @@ class Profile extends Component {
     editing: false,
   }
 
+  handleFormSubmit = (event) => {
+    event.preventDefault();
+    const { name, age, gender, weight, height, activity } = this.state
+
+    // Cálculo IMC
+    const IMC = ((weight / (height * height)) * 10000).toFixed(2);
+
+    // Cálculo GED
+    let GED = 0;
+    if (gender === 'female') {
+      GED = (((10 * weight) + (6.25 * height) - (5 * age) - 161) * activity).toFixed(0)
+    } else {
+      GED =( ((10 * weight) + (6.25 * height) - (5 * age) + 5) * activity).toFixed(0);
+    }
+
+    // Cálculo portion
+    let portion = 1;
+    if (GED >= 2100) {
+        portion = 1.5;
+    } else if (GED >= 3000) {
+        portion = 2;
+    }
+
+    
+    this.props.update({ name, age, gender, weight, height, activity, GED, IMC, portion })
+    .then( (user) => {
+      console.log(user);
+      this.setState ({editing: false});
+    })
+    .catch( error => {
+      this.setState ({error: 'Asegúrate de haber rellenado todos los campos e inténtalo de nuevo.'});
+      console.log(error);
+    })
+  }
+
   handleChange = (event) => {  
     const {name, value} = event.target;
     this.setState({[name]: value});
   }
 
+  handleEditButton = () => {
+      this.setState ({
+          editing: true,
+          error:''
+      });
+  }
+
+  handleCancel = () => {
+      this.setState({
+          editing:false,
+          error:'',
+          name: this.props.user.name,
+          age: this.props.user.age,
+          gender: this.props.user.gender,
+          weight: this.props.user.weight,
+          height: this.props.user.height,
+          activity:this.props.user.activity,
+      });
+  }
+
+  convertActivity = (level) => {
+    switch (level) {
+      case '1.4':
+        return 'Sedentario';
+        break;
+      case '1.6':
+        return 'Leve';
+        break;
+      case '2':
+        return 'Moderado';
+        break;
+      case '2.4':
+        return 'Muy activo';
+        break;
+      default:
+        return 'Sedentario';
+        break;
+    }
+  }
+
+  convertGender = (sex) => {
+    switch (sex) {
+      case 'male':
+        return 'Hombre';
+        break;
+      case 'female':
+        return 'Mujer';
+        break;
+      default:
+        return 'Mujer';
+        break;
+    }
+  }
+
+
+
   render() {
     const  { user } = this.props;
-    const { name, age, gender, weight, height, activity, editing } = this.state;
+    const { name, age, gender, weight, height, activity, editing, error } = this.state;
+    console.log(this.state);
     return (
       <div>
         <h3>Hola <span>{name},</span></h3>
@@ -38,18 +134,18 @@ class Profile extends Component {
           <p>Índice de massa corporal (<b>IMC</b>):</p>
           <p>
             <span>{user.IMC} </span>
-            {user.IMC < 18.5 ? 
+            {user.IMC <= 18.5 ? 
             <span>(Infrapeso)</span> : null}
-            {user.IMC > 18.5 || user.IMC <= 24.9 ? 
+            {user.IMC > 18.5 && user.IMC <= 24.9 ? 
             <span>(Rango saludable)</span> : null}
-            {user.IMC > 24.9 || user.IMC <= 29.9 ? 
+            {user.IMC > 24.9 && user.IMC <= 29.9 ? 
             <span>(Sobrepeso)</span> : null}
-            {user.IMC > 29.9 || user.IMC <= 34.9 ? 
-            <span>(Obesidad grado I)</span> : null}
-            {user.IMC > 34.9 || user.IMC <= 39.9 ? 
-            <span>(Obesidad grado II)</span> : null}
+            {user.IMC > 29.9 && user.IMC <= 34.9 ? 
+            <span>(Obesidad de grado I)</span> : null}
+            {user.IMC > 34.9 && user.IMC <= 39.9 ? 
+            <span>(Obesidad de grado II)</span> : null}
             {user.IMC > 39.9 ? 
-            <span>(Obesidad grado III)</span> : null}
+            <span>(Obesidad de grado III)</span> : null}
           </p>
           <p>Gasto energético dario (<b>GED</b>):</p>
           <span>{user.GED} Kcal</span>
@@ -60,8 +156,12 @@ class Profile extends Component {
           : <InputSC id='age' type='text' name='age' value={age} disabled/>}
         <p>Sexo:</p>
           {editing?
-          <InputSC id='gender' type='text' name='gender' value={gender} onChange={this.handleChange}/>
-          : <InputSC id='gender' type='text' name='gender' value={gender} disabled/>}
+          <ActivitySelectSC name="gender" onChange={this.handleChange}>
+          <option selected disabled value={this.convertGender(gender)}>{this.convertGender(gender)}</option>
+          <option  value='male'>Hombre</option>
+          <option value='female'>Mujer</option>
+        </ActivitySelectSC>
+          : <InputSC id='gender' type='text' name='gender' value={this.convertGender(gender)} disabled/>}
         <p>Peso (Kg):</p>
           {editing?
           <InputSC id='weight' type='text' name='weight' value={weight} onChange={this.handleChange}/>
@@ -71,81 +171,21 @@ class Profile extends Component {
           <InputSC id='height' type='text' name='height' value={height} onChange={this.handleChange}/>
           : <InputSC id='height' type='text' name='height' value={height} disabled/>}
         <p>Nivel de actividad:</p>
-          <select name="activity" id=""></select>
-          {editing?
-          <InputSC id='height' type='select' name='height' value={height} onChange={this.handleChange}/>
-          : <InputSC id='height' type='text' name='height' value={height} disabled/>}
+        {editing? 
+        <ActivitySelectSC name="activity" onChange={this.handleChange}>
+          <option selected disabled>{this.convertActivity(activity)}</option>
+          <option  value={1.4}>Sedentario</option>
+          <option value={1.6}>Leve</option>
+          <option value={2}>Moderado</option>
+          <option value={2.4}>Muy activo</option>
+        </ActivitySelectSC>
+        : <InputSC id='activity' type='text' name='activity' value={this.convertActivity(activity)} disabled/>}
 
-        {/* <form>
-        {formPage === 0 ?
-        <fieldset>
-        </fieldset> :null }
-
-        {formPage === 1 ?
-        <fieldset>
-      
-          <GenderSC>
-          {!gender.length || gender === 'female' ?
-          <input hidden id='genderFemale' type='radio' name='gender' value='female' onChange={this.handleChange} checked/>
-          : <input hidden id='genderFemale' type='radio' name='gender' value='female' onChange={this.handleChange}/>
-          }
-          <label htmlFor='genderFemale'>
-            Mujer
-          </label>
-          {gender ==='male' ?
-            <input hidden id='genderMale' type='radio' name='gender' value='male' onChange={this.handleChange} checked/>
-            :<input hidden id='genderMale' type='radio' name='gender' value='male' onChange={this.handleChange}/>
-          } 
-          <label htmlFor='genderMale'>
-            Hombre
-          </label>
-          </GenderSC>
-          <NutriTitleSC>Cuánto pesas? (Kg)</NutriTitleSC>
-          <InputSC placeholder='60' id='weight' type='number' name='weight' value={weight} onChange={this.handleChange}/>
-          <NutriTitleSC>Cuánto mides? (cm)</NutriTitleSC>
-          <InputSC placeholder='160' id='height' type='number' name='height' value={height} onChange={this.handleChange}/>
-        </fieldset> :null }
-
-        {formPage === 2 ?
-        <FieldsetSC>
-          <NutriTitleSC>Cuál es tu nivel de actividad física?</NutriTitleSC>
-          {!activity.length || activity === 1.4 ?
-            <InputSC hidden id='activity1' type='radio' name='activity' value='1.4' onChange={this.handleChange} checked/> 
-            : <InputSC hidden id='activity1' type='radio' name='activity' value='1.4' onChange={this.handleChange}/>
-          }
-          <label htmlFor='activity1'>
-          Sedentario
-          </label>
-          {activity === '1.6' ?
-            <InputSC hidden id='activity2' type='radio' name='activity' value='1.6' onChange={this.handleChange} checked/>
-            :<InputSC hidden id='activity2' type='radio' name='activity' value='1.6' onChange={this.handleChange}/>
-          }
-          <label htmlFor='activity2'>
-          Leve
-          </label>
-          {activity === '2' ?
-            <InputSC hidden id='activity3' type='radio' name='activity' value='2' onChange={this.handleChange} checked/>
-            :<InputSC hidden id='activity3' type='radio' name='activity' value='2' onChange={this.handleChange}/>
-          }
-          <label htmlFor='activity3'>
-          Moderado
-          </label>
-          {activity === '2.4' ?
-            <InputSC hidden id='activity4' type='radio' name='activity' value='2.4' onChange={this.handleChange} checked/>
-            :<InputSC hidden id='activity4' type='radio' name='activity' value='2.4' onChange={this.handleChange}/>
-          }
-          <label htmlFor='activity4'>
-          Muy activo
-          </label>
-        </FieldsetSC> : null}
-
+          {editing ? <input onClick={this.handleFormSubmit} type='submit' value='Guardar' /> : null}
+          {!editing? <button onClick={this.handleEditButton}>Editar información</button> :null}
           {error? <p className='error'>{error}</p>: null}
-
-          {formPage < 2 ? <button onClick={this.handleNext}>Siguiente ></button> : null }
-          {formPage === 2 ? <button type='submit' onClick={this.handleFormSubmit}>Enviar</button> : null }
-          {formPage > 0 ? <button className='reversed' onClick={this.handleBack}>Atrás</button> : null }
-        </form> */}
-
+          {editing ? <CancelSC onClick= {this.handleCancel}>Cancelar</CancelSC> :null}
+        <hr></hr>
         <ChangePassword></ChangePassword>
       </div>
     )
