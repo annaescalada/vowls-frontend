@@ -45,8 +45,8 @@ class Signup extends Component {
     return (
       <>
         <form onSubmit={this.handleFormSubmit}>
-          <input required id='username' type='email' name='username' value={username} onChange={this.handleChange}/>
-          <input id='password' type='password' name='password' value={password} onChange={this.handleChange} />
+          <input placeholder='Correo electrónico' required id='username' type='email' name='username' value={username} onChange={this.handleChange}/>
+          <input placeholder='Contraseña' id='password' type='password' name='password' value={password} onChange={this.handleChange} />
           <input type='submit' value='Crear una cuenta' />
         </form>
 

@@ -23,6 +23,7 @@ body {
 
 a {
   color: #c25c78;
+  text-decoration: none;
 }
 
 #root {
