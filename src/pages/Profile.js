@@ -58,11 +58,23 @@ class Profile extends Component {
           {editing?
           <InputSC id='age' type='text' name='age' value={age} onChange={this.handleChange}/>
           : <InputSC id='age' type='text' name='age' value={age} disabled/>}
-
         <p>Sexo:</p>
-        <p>Peso:</p>
-        <p>Altura:</p>
+          {editing?
+          <InputSC id='gender' type='text' name='gender' value={gender} onChange={this.handleChange}/>
+          : <InputSC id='gender' type='text' name='gender' value={gender} disabled/>}
+        <p>Peso (Kg):</p>
+          {editing?
+          <InputSC id='weight' type='text' name='weight' value={weight} onChange={this.handleChange}/>
+          : <InputSC id='weight' type='text' name='weight' value={weight} disabled/>}
+        <p>Altura (cm):</p>
+          {editing?
+          <InputSC id='height' type='text' name='height' value={height} onChange={this.handleChange}/>
+          : <InputSC id='height' type='text' name='height' value={height} disabled/>}
         <p>Nivel de actividad:</p>
+          <select name="activity" id=""></select>
+          {editing?
+          <InputSC id='height' type='select' name='height' value={height} onChange={this.handleChange}/>
+          : <InputSC id='height' type='text' name='height' value={height} disabled/>}
 
         {/* <form>
         {formPage === 0 ?

@@ -9,13 +9,14 @@ const NavDivSC = styled.div`
   display:flex;
   justify-content: center;
   flex-direction:column;
-  padding:30% 0 20% 0;
+  padding:20px 0 20px 0;
 `
 const MenuPSC = styled.p`
  font-size:15px;
  text-align:center;
- margin:1%;
+ margin:0;
  color: #707070;
+
 `
 
 const LogoImgSC = styled.img`
@@ -24,18 +25,15 @@ const LogoImgSC = styled.img`
 `
 
 class Navbar extends Component {
-  state = {
-    currentPath: ''
-  }
-
+ 
   render() {  
-    const {currentPath } =this.state;
+    const currentPath = this.props.location.pathname;
     return (
       <nav>
-          <NavLink onClick={() => this.setState({currentPath : 'vowls'})} to='/vowls' activeClassName="selected">
+          <NavLink to='/vowls' activeClassName="selected">
             <NavDivSC>
                 <div> 
-                  {currentPath === 'vowls' ?
+                  {currentPath === '/vowls' ?
                   <LogoImgSC src="../images/Menu-icons/Vowl-icon-pink.png" alt=""/>
                   : <LogoImgSC src="../images/Menu-icons/Vowl-icon-grey.png" alt=""/>}
                 </div>
@@ -43,10 +41,10 @@ class Navbar extends Component {
             </NavDivSC>
           </NavLink>
 
-          <NavLink onClick={() => this.setState({currentPath : 'foods'})} to='/foods' activeClassName="selected"> 
+          <NavLink to='/foods' activeClassName="selected"> 
             <NavDivSC>
               <div>
-                {currentPath === 'foods' ?
+                {currentPath === '/foods' ?
                 <LogoImgSC src="../images/Menu-icons/Food-icon-pink.png" alt=""/>
                 : <LogoImgSC src="../images/Menu-icons/Food-icon-grey.png" alt=""/>}
               </div>
@@ -54,10 +52,10 @@ class Navbar extends Component {
             </NavDivSC>
           </NavLink>
 
-          <NavLink onClick={() => this.setState({currentPath : 'meals'})} to='/meals' activeClassName="selected">
+          <NavLink to='/meals' activeClassName="selected">
             <NavDivSC>
               <div>
-                {currentPath === 'meals' ?
+                {currentPath === '/meals' ?
                   <LogoImgSC src="../images/Menu-icons/Meal-icon-pink.png" alt=""/>
                   :<LogoImgSC src="../images/Menu-icons/Meal-icon-grey.png" alt=""/> }
               </div>
@@ -65,10 +63,10 @@ class Navbar extends Component {
             </NavDivSC>
           </NavLink>
 
-          <NavLink onClick={() => this.setState({currentPath : 'profile'})} to='/profile' activeClassName="selected">
+          <NavLink to='/profile' activeClassName="selected">
             <NavDivSC>
               <div>
-                {currentPath === 'profile' ?
+                {currentPath === '/profile' ?
                   <LogoImgSC src="../images/Menu-icons/Profile-icon-pink.png" alt=""/>
                   : <LogoImgSC src="../images/Menu-icons/Profile-icon-grey.png" alt=""/>}
               </div>
@@ -80,4 +78,4 @@ class Navbar extends Component {
   }
 }
 
-export default withAuth(Navbar);
+export default withRouter(withAuth(Navbar));
