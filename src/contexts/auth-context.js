@@ -19,7 +19,7 @@ class AuthProvider extends Component {
       })
     })
   }
-
+  
   userLogin = (user) => {
     return authService.login(user)
     .then((user) => {
@@ -29,7 +29,7 @@ class AuthProvider extends Component {
       })
     }) 
   }
-
+  
   userLogout = () => {
     return authService.logout()
     .then(() => {
@@ -39,10 +39,11 @@ class AuthProvider extends Component {
       })
     })
   }
-
-  userUpdate = (newUser) => {
-    return authService.update(newUser)
+  
+  userUpdate = (user) => {
+    return authService.update(user)
     .then((user) => {
+        console.log('in update auth-context', user);
         this.setState({
           user: user,
         });
@@ -52,6 +53,7 @@ class AuthProvider extends Component {
   userChangePassword = (newPassword) => {
     return authService.changePassword(newPassword)
     .then((user) => {
+      console.log('in change pass auth-context', user);
       this.setState({
         user: user,
       })

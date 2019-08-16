@@ -32,13 +32,16 @@ class AuthService {
 
   update(newUser) {
     return this.auth.put('/auth/update', newUser)
-    .then(({ data }) => data);
+    .then(({ data }) => {
+      console.log('in service update', data)
+      return data;
+    });
   }
 
   changePassword(newPassword) {
     return this.auth.put('/auth/change-password', newPassword)
-    .then((data) => {
-      console.log("in service", data);
+    .then(({ data }) => {
+      console.log("in service change password", data);
       return data;
     })
   }
