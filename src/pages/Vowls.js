@@ -7,6 +7,7 @@ class Vowls extends Component {
     return (
       <div>
         <Loading text1='Generando un' span='vowl' text2='saludable, equilibrado, completo y delicioso!'></Loading>
+        <div className='last'></div>
       </div>
     )
   }

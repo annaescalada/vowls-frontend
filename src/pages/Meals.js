@@ -7,6 +7,7 @@ class Meals extends Component {
     return (
       <div>
         <Loading text1='Repartiendo raciones de alimentos en' span='comidas y snacks' text2='...'></Loading>
+        <div className='last'></div>
       </div>
     )
   }

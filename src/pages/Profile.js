@@ -168,6 +168,7 @@ class Profile extends Component {
           {editing ? <CancelSC onClick= {this.handleCancel}>Cancelar</CancelSC> :null}
         <hr></hr>
         <ChangePassword></ChangePassword>
+        <div className='last'></div>
       </div>
     )
   }

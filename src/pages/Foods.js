@@ -22,6 +22,9 @@ class Foods extends Component {
 
   render () {
     const {foods} = this.state;
+    const foodGroups = ['Cereales', 'proteins', 'tubers', 'fruit', 'berries', 'cereals', 'proteins', 'tubers', 'cruciferous', 'greens', 'othervegs', 'omega', 'fat', 'dairy'];
+    const foodGroupsTitles = ['Cereales integrales', 'proteins', 'tubers', 'fruit', 'berries', 'cereals', 'proteins', 'tubers', 'cruciferous', 'greens', 'othervegs', 'omega', 'fat', 'dairy'];
+    const foodGroupsIcons = [] 
     console.log(foods);
     console.log(this.props);
     return (
@@ -40,6 +43,7 @@ class Foods extends Component {
       
       <Loading text1='Calculando' span='raciones personalizadas' text2='de cada grupo de alimentos…'></Loading>
     }
+    <div className='last'></div>
     </section>
     </>
     )

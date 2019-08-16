@@ -25,9 +25,9 @@ p {
   margin: 10px;
 }
 
-main {
+div.last {
+  height:150px;
 
-  padding-bottom: 150px;
 }
 
 a {
