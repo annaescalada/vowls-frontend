@@ -31,7 +31,7 @@ User profile:
 - Add nutritional goal
 - Add food allergies
 
-Ingredients tag:
+Foods tag:
 - As a user I can select what foods I have consumed to get a daily score.
 - As a user I can save my daily score and visualized it in a calendar.
 
@@ -92,8 +92,8 @@ Menu tag:
   - auth.changePassword(newPassword)
   - auth.delete()
 
-- Ingredients Service
-  - ingredients.list()
+- Food Service
+  - Food.list()
   
 - Vowls Service 
 
@@ -129,7 +129,7 @@ User model
 }
 ```
 
-Ingredient model
+Food model
 
 ```javascript
  {
@@ -145,18 +145,18 @@ Vowl model
 ```javascript
 {
   user: [{type: Schema.Types.ObjectId,ref:'Participant'}],
-  fruit: [{type: Schema.Types.ObjectId,ref:'ingredients'}],
-  berries: [{type: Schema.Types.ObjectId,ref:'ingredients'}],
-  proteins: [{type: Schema.Types.ObjectId,ref:'ingredients'}],
-  cereals: [{type: Schema.Types.ObjectId,ref:'ingredients'}],
-  tubers: [{type: Schema.Types.ObjectId,ref:'ingredients'}],
-  cruciferous: [{type: Schema.Types.ObjectId,ref:'ingredients'}],
-  greens: [{type: Schema.Types.ObjectId,ref:'ingredients'}],
-  othervegs: [{type: Schema.Types.ObjectId,ref:'ingredients'}],
-  omega: [{type: Schema.Types.ObjectId,ref:'ingredients'}],
-  fat: [{type: Schema.Types.ObjectId,ref:'ingredients'}],
-  dairy: [{type: Schema.Types.ObjectId,ref:'ingredients'}],
-  salsa: [{type: Schema.Types.ObjectId,ref:'ingredients'}],
+  fruit: [{type: Schema.Types.ObjectId,ref:'food'}],
+  berries: [{type: Schema.Types.ObjectId,ref:'food'}],
+  proteins: [{type: Schema.Types.ObjectId,ref:'food'}],
+  cereals: [{type: Schema.Types.ObjectId,ref:'food'}],
+  tubers: [{type: Schema.Types.ObjectId,ref:'food'}],
+  cruciferous: [{type: Schema.Types.ObjectId,ref:'food'}],
+  greens: [{type: Schema.Types.ObjectId,ref:'food'}],
+  othervegs: [{type: Schema.Types.ObjectId,ref:'food'}],
+  omega: [{type: Schema.Types.ObjectId,ref:'food'}],
+  fat: [{type: Schema.Types.ObjectId,ref:'food'}],
+  dairy: [{type: Schema.Types.ObjectId,ref:'food'}],
+  salsa: [{type: Schema.Types.ObjectId,ref:'food'}],
 }
 ```
 
@@ -185,7 +185,7 @@ Vowl model
 
 | GET         | /vowls/all                     |   (empty)                  | 200          | 400          | Checks if user is logged in and shows all saved vowls.                                        |
 
-| POST         | /vowls/save                   | {user, ingredients}        | 200          |  400        | Checks if user is logged in and fields not empty (422), creates a new vowl.                              |
+| POST         | /vowls/save                   | {user, foods}        | 200          |  400        | Checks if user is logged in and fields not empty (422), creates a new vowl.                              |
 
 | DELETE      | /vowls/delete/:id     | (body)                               | 201         | 400          | Checks if user is logged in and if vowl exists, deletes specific vowl                                            |
 

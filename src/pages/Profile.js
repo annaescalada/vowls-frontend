@@ -107,12 +107,11 @@ class Profile extends Component {
   render() {
     const  { user } = this.props;
     const { name, age, gender, weight, height, activity, editing, error } = this.state;
-    console.log(this.state);
     return (
       <div>
         <h3>Hola <span>{name},</span></h3>
         <DataContainerSC>
-          <p>Índice de massa corporal (<b>IMC</b>):</p>
+          <p>Índice de masa corporal (<b>IMC</b>):</p>
           <p>
             <span>{user.IMC} </span>
             {user.IMC <= 18.5 ? 
