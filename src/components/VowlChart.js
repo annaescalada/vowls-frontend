@@ -21,7 +21,7 @@ constructor(props) {
             'https://res.cloudinary.com/greenstinct/image/upload/v1565948661/pumkin_nuxtvt.jpg?size=0',
             'https://res.cloudinary.com/greenstinct/image/upload/v1565948659/eggplanrt_dli6my.jpg',
             'https://res.cloudinary.com/greenstinct/image/upload/v1565948659/chard_mpgqpc.jpg',
-            'https://res.cloudinary.com/greenstinct/image/upload/v1565948660/edamames_q9jopp.jpg',
+            'https://res.cloudinary.com/greenstinct/image/upload/c_mfit,h_1000,w_1000/v1565948660/edamames_q9jopp.jpg',
             'https://res.cloudinary.com/greenstinct/image/upload/v1565948660/edamames_q9jopp.jpg'
           ],
             imageWidth: 20,
