@@ -28,12 +28,12 @@ const FoodTitle =styled.p`
 
 class Meals extends Component {
   state ={
-    isLoading: false
+    isLoading: true
   } 
 
   componentDidMount() {
     setTimeout(()=> this.setState({
-      isLoading:true
+      isLoading:false
     }) , 3000)
   }
   
@@ -44,7 +44,7 @@ class Meals extends Component {
     return (
     <>
     <section>
-      {this.state.isLoading ?
+      {!this.state.isLoading ?
       <>
         <FoodTitle>Desayuno</FoodTitle>
         <MealContainerSC>

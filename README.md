@@ -144,7 +144,6 @@ Vowl model
 
 ```javascript
 {
-  user: [{type: Schema.Types.ObjectId,ref:'Participant'}],
   fruit: [{type: Schema.Types.ObjectId,ref:'food'}],
   berries: [{type: Schema.Types.ObjectId,ref:'food'}],
   proteins: [{type: Schema.Types.ObjectId,ref:'food'}],

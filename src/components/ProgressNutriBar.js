@@ -32,7 +32,6 @@ const FlatSC = styled.div`
 `;
 
 function ProgressNutriBar(props) {
-    console.log(props.num);
     return (
         <ProgressContainerSC>
             <RoundFullSC />

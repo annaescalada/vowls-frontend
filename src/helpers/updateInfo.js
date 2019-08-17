@@ -12,7 +12,7 @@ export const updateInfo = ((age, gender, weight, height, activity) => {
 
     // Cálculo portion
     let portion = 1;
-    if (GED >= 2100) {
+    if (GED >= 2100 && GED < 3000) {
         portion = 2;
     } else if (GED >= 3000) {
         portion = 3;
