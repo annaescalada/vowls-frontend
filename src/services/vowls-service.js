@@ -13,6 +13,11 @@ class VowlsService {
       .then(({ data }) => data);
   }
 
+  getOne(vowlID) {
+    return this.vowls.get(`vowls/getOne/${vowlID}`)
+    .then(({ data }) => data);
+  }
+
   saveVowl(vowl) {
     return this.vowls.post('vowls/save', vowl)
     .then(({data}) => data);

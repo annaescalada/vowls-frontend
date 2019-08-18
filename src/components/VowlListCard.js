@@ -32,16 +32,16 @@ const DeleteIconSC = styled.img`
 
 function VowlListCard(props) {
     return (
-        <div>
+        <>
             <VowlListCardSC key={props.vowl._id}>
-            <VowlIconSC src='./images/Food-icons/Vowl.png'/>
-            <VowlDetailsContainerSC>
+            <VowlIconSC onClick={() => props.handleCardClick(props.vowl._id)} src='./images/Food-icons/Vowl.png'/>
+            <VowlDetailsContainerSC onClick={() => props.handleCardClick(props.vowl._id)}>
                 <p>{props.vowl.name}</p>
                 <VowlDescriptionSC><span>{props.vowl.description}</span></VowlDescriptionSC>
             </VowlDetailsContainerSC>
             <DeleteIconSC onClick={() => props.handleDeleteVowl(props.vowl._id)} src='./images/Menu-icons/delete.png'/>
             </VowlListCardSC>
-        </div>
+        </>
     )
 }
 

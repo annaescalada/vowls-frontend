@@ -106,6 +106,14 @@ input[type='text']:disabled, input[type='email']:disabled, input[type='password'
   color: #707070;
 }
 
+.success {
+  background: #5cc1a547;
+  padding: 6%;
+  font-size: 0.9em;
+  border-radius: 10px;
+  color: #707070;
+}
+
 fieldset {
   border:none;
 }
@@ -149,4 +157,14 @@ hr {
   justify-content: center;
   margin-left:-74px;
   margin-top:20px;
+}
+
+.loading {
+  animation: 6s infinite rotate;
+}
+
+@keyframes rotate {
+  0% {transform: rotate(0deg);}
+  
+  100% {transform: rotate(360deg);}
 }

@@ -10,16 +10,24 @@ import VowlListCard from '../components/VowlListCard';
 import {InputSC} from '../pages/NutriForm';
 import styled from 'styled-components'
 
+const SavedVowlTitleSC = styled.h3`
+  font-weight: 600;
+  text-align:center;
+`;
+
 class Vowls extends Component {
   state ={
     user: this.props.user,
 
     search :'',
     
+    isLoading: true,
     isVowlShowing:false,
     isVowlLoading: false,
-    isLoading: true,
     isSavedMessageShowing:false,
+    isSavedVowlShowing:false,
+    savedVowlShowing: {},
+
     
     name:'',
     vowl: {},
@@ -41,6 +49,7 @@ class Vowls extends Component {
       isVowlLoading: true, 
       isVowlShowing:false,
       isSavedMessageShowing: false,
+      isSavedVowlShowing:false,
     });
     const generatedVowl = randomVowl(this.state.foods);
     this.setState({ 
@@ -50,7 +59,7 @@ class Vowls extends Component {
       this.setState({
         isVowlLoading:false,
         isVowlShowing:true,
-      }) , 1000)
+      }), 1000)
   }
 
   handleSaveVowlClick = () => {
@@ -77,12 +86,34 @@ class Vowls extends Component {
   }
 
   handleDeleteVowl = (vowlID) => {
+    this.setState({
+      isSavedVowlShowing:false,
+    });
     console.log(vowlID);
     vowlsService.deleteVowl(vowlID)
     .then(({updatedUser}) => {
-      console.log(updatedUser);
       this.setState({
         user: updatedUser,
+        isSavedVowlShowing:false,
+      })
+    })
+    .catch( error => {
+      console.log(error);
+    });
+  }
+
+  handleCardClick = (vowlID) => {
+    this.setState ({
+      isSavedVowlShowing: false,
+    })
+    vowlsService.getOne(vowlID)
+    .then(({vowl}) => {
+      console.log(vowl);
+      this.setState({
+        isVowlShowing:false,
+        isSavedMessageShowing:false,
+        isSavedVowlShowing:true,
+        savedVowlShowing: vowl,
       })
     })
     .catch( error => {
@@ -103,7 +134,7 @@ class Vowls extends Component {
   }
 
   render() {
-    const { user, isLoading, isVowlLoading, isVowlShowing, isSavedMessageShowing, vowl, search } = this.state;
+    const { user, isLoading, isVowlLoading, isVowlShowing, isSavedMessageShowing, isSavedVowlShowing, savedVowlShowing, vowl, search } = this.state;
     console.log(this.props)
     return (
       <>
@@ -122,9 +153,15 @@ class Vowls extends Component {
               <button className="reversed" onClick={this.handleSaveVowlClick}>Guardar</button>
             </>
           : null }
+          {isSavedVowlShowing ?
+            <>
+              <SavedVowlTitleSC>{savedVowlShowing.name}</SavedVowlTitleSC>
+              <VowlDetails vowl={savedVowlShowing}></VowlDetails>
+            </>
+          : null }
           {isSavedMessageShowing ?
             <>
-              <p>Vowl guardado correctamente!</p>
+              <p className='success'>✓ Tu Vowl se ha guardado correctamente!</p>
             </>
           : null}
           <h3>Mis vowls</h3>
@@ -135,7 +172,7 @@ class Vowls extends Component {
               return(
                 <>
                   { vowl.name && vowl.name.includes(search)?
-                  <VowlListCard vowl={vowl} handleDeleteVowl={this.handleDeleteVowl}></VowlListCard>
+                  <VowlListCard vowl={vowl} handleDeleteVowl={this.handleDeleteVowl} handleCardClick={this.handleCardClick}></VowlListCard>
                   : null}
                 </>
               )
