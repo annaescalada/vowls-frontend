@@ -14,10 +14,10 @@ state = {
         type: 'image',
         opacity: 1,
         image: {
-            src: [this.props.cereal.img, this.props.protein.img, this.props.tuber.img, this.props.cruciferous.img, this.props.greens.img
+            src: [this.props.cereal.img, this.props.protein.img, this.props.tuber.img, this.props.cruciferous.img, this.props.greens.img, this.props.othervegs.img
           ],
             imageWidth: 20,
-            imagedHeight: 0
+            imagedHeight: 20
         },
         },
         stroke: {
@@ -39,7 +39,7 @@ state = {
         }
         }]
     },
-    series: [2,2,1,1,1],
+    series: [1,1,1,1.2,1.5,1.5],
     }
 
 render() {

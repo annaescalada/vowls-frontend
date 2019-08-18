@@ -9,7 +9,7 @@ const NavDivSC = styled.div`
   display:flex;
   justify-content: center;
   flex-direction:column;
-  padding:20px 0 20px 0;
+  padding:8px 0 8px 0;
 `
 const MenuPSC = styled.p`
  font-size:15px;
@@ -20,8 +20,8 @@ const MenuPSC = styled.p`
 `
 
 const LogoImgSC = styled.img`
-  height: 25px;
-  margin: 0;
+  height: 22px;
+  margin: -8px;
 `
 
 class Navbar extends Component {
