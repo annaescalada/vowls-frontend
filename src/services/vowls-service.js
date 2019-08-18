@@ -18,9 +18,9 @@ class VowlsService {
     .then(({data}) => data);
   }
 
-  deleteVowl() {
-    return this.vowls.delete('vowls/delete/:id')
-    .then(response => response.data)
+  deleteVowl(vowlID) {
+    return this.vowls.delete(`vowls/delete/${vowlID}`)
+    .then(({data}) => data);
   }
 }
 

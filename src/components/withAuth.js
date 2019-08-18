@@ -8,7 +8,7 @@ const withAuth = (Comp) => {
         <AuthContext.Consumer>
           {({user, isLoggedIn, login, signup, logout, update, changePassword, deleteUser}) => (
             <Comp  
-            user={user} 
+            user={user}
             isLoggedIn={isLoggedIn} 
             login={login}
             signup={signup}
