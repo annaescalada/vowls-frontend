@@ -59,7 +59,7 @@ class Vowls extends Component {
       this.setState({
         isVowlLoading:false,
         isVowlShowing:true,
-      }), 1000)
+      }), 3000)
   }
 
   handleSaveVowlClick = () => {

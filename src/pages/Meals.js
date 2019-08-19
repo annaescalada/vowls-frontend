@@ -49,8 +49,8 @@ class Meals extends Component {
         <FoodTitle>Desayuno</FoodTitle>
         <MealContainerSC>
           <IconSC src={foodGroupsIcons[0]} alt=""/>
+          <IconSC src={foodGroupsIcons[3]} alt=""/>
           <IconSC src={foodGroupsIcons[4]} alt=""/>
-          <IconSC src={foodGroupsIcons[5]} alt=""/>
           <IconSC src={foodGroupsIcons[10]} alt=""/>
           <IconSC src={foodGroupsIcons[8]} alt=""/>
         </MealContainerSC>
