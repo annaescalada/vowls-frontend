@@ -146,8 +146,8 @@ class Meals extends Component {
           <IconSC className={!buttons.H ? 'greyScale' :null } onClick={() => this.handleClick('H')} src={foodGroupsIcons[0]} alt=""/>
           <IconSC className={!buttons.I ? 'greyScale' :null } onClick={() => this.handleClick('I')} src={foodGroupsIcons[1]} alt=""/>
           <IconSC className={!buttons.J ? 'greyScale' :null } onClick={() => this.handleClick('J')} src={foodGroupsIcons[5]} alt=""/>
-          <IconSC className={!buttons.K ? 'greyScale' :null } onClick={() => this.handleClick('K')} src={foodGroupsIcons[6]} alt=""/>
           <IconSC className={!buttons.L ? 'greyScale' :null } onClick={() => this.handleClick('L')} src={foodGroupsIcons[7]} alt=""/>
+          <IconSC className={!buttons.K ? 'greyScale' :null } onClick={() => this.handleClick('K')} src={foodGroupsIcons[6]} alt=""/>
           <IconSC className={!buttons.M ? 'greyScale' :null } onClick={() => this.handleClick('M')} src={foodGroupsIcons[9]} alt=""/>
         </MealContainerSC>
         <FoodTitle>Snack</FoodTitle>
@@ -161,8 +161,8 @@ class Meals extends Component {
           <IconSC className={!buttons.Q ? 'greyScale' :null } onClick={() => this.handleClick('Q')} src={foodGroupsIcons[2]} alt=""/>
           <IconSC className={!buttons.R ? 'greyScale' :null } onClick={() => this.handleClick('R')} src={foodGroupsIcons[1]} alt=""/>
           <IconSC className={!buttons.S ? 'greyScale' :null } onClick={() => this.handleClick('S')} src={foodGroupsIcons[5]} alt=""/>
-          <IconSC className={!buttons.T ? 'greyScale' :null } onClick={() => this.handleClick('T')} src={foodGroupsIcons[6]} alt=""/>
           <IconSC className={!buttons.U ? 'greyScale' :null } onClick={() => this.handleClick('U')} src={foodGroupsIcons[7]} alt=""/>
+          <IconSC className={!buttons.T ? 'greyScale' :null } onClick={() => this.handleClick('T')} src={foodGroupsIcons[6]} alt=""/>
           <IconSC className={!buttons.V ? 'greyScale' :null } onClick={() => this.handleClick('V')} src={foodGroupsIcons[9]} alt=""/>
         </MealContainerSC>
       </>
