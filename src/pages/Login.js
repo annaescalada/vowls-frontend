@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import withAuth from '../components/withAuth';
 import styled from 'styled-components'
+import { processError } from '../helpers/processError'
 
 export const ImgContainer = styled.div`
   position: relative;
@@ -30,7 +31,7 @@ class Login extends Component {
       console.log(user)
     })
     .catch( error => {
-      this.setState ({error: 'Ha habido un error, por favor inténtalo de nuevo.'});
+      this.setState ({error: processError(error.response.status)});
       console.log(error);
     })
   }
@@ -45,8 +46,8 @@ class Login extends Component {
     return (
       <>
         <form onSubmit={this.handleFormSubmit}>
-          <input placeholder='Correo electrónico' id='username' type='text' name='username' value={username} onChange={this.handleChange}/>
-          <input placeholder='Contraseña' id='password' type='password' name='password' value={password} onChange={this.handleChange} />
+          <input placeholder='Correo electrónico' id='username' type='email' name='username' value={username} onChange={this.handleChange } required/>
+          <input placeholder='Contraseña' id='password' type='password' name='password' value={password} onChange={this.handleChange} required/>
           <input type='submit' value='Iniciar sesión' />
         </form>
 

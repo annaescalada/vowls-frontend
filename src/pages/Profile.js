@@ -69,23 +69,29 @@ class Profile extends Component {
   }
 
   convertActivity = (level) => {
+    let activity;
     switch (level) {
+      case 1.4:
       case '1.4':
-        return 'Sedentario';
+        activity = 'Sedentario';
         break;
+      case 1.6:
       case '1.6':
-        return 'Leve';
+        activity = 'Leve';
         break;
+      case 2:
       case '2':
-        return 'Moderado';
+        activity = 'Moderado';
         break;
+      case 2.4:
       case '2.4':
-        return 'Muy activo';
+        activity = 'Muy activo';
         break;
       default:
-        return 'Sedentario';
+        activity = 'Sedentario';
         break;
     }
+    return activity;
   }
 
   convertGender = (sex) => {

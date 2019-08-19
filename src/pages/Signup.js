@@ -1,12 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import withAuth from '../components/withAuth.js';
-import styled from 'styled-components'
 import { ImgContainer, Vowl1 } from './Login.js';
-
-const ErrorSC = styled.p`
-  color: red
-`;
+import { processError } from '../helpers/processError'
 
 class Signup extends Component {
 
@@ -30,8 +26,8 @@ class Signup extends Component {
         });
       })
       .catch( error => {
-        this.setState ({error: 'Ha habido un error, por favor inténtalo de nuevo.'});
-        console.log(error);
+        this.setState ({error: processError(error.response.status)});
+        console.log(error.response.status);
       })
   }
 
@@ -45,8 +41,8 @@ class Signup extends Component {
     return (
       <>
         <form onSubmit={this.handleFormSubmit}>
-          <input placeholder='Correo electrónico' required id='username' type='email' name='username' value={username} onChange={this.handleChange}/>
-          <input placeholder='Contraseña' id='password' type='password' name='password' value={password} onChange={this.handleChange} />
+          <input placeholder='Correo electrónico' id='username' type='email' name='username' value={username} onChange={this.handleChange} required/>
+          <input placeholder='Contraseña' id='password' type='password' name='password' value={password} onChange={this.handleChange} required/>
           <input type='submit' value='Crear una cuenta' />
         </form>
 

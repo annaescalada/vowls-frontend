@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import withAuth from '../components/withAuth';
 import styled from 'styled-components'
+import { processError } from '../helpers/processError'
 
 export const CancelSC = styled.p`
   text-align: center;
@@ -24,7 +25,7 @@ class ChangePassword extends Component {
           this.setState({editing:false})
         })
         .catch( error => {
-        this.setState ({error: 'Ha habido un error, por favor inténtalo de nuevo.'});
+        this.setState ({error: processError(error.response.status)});
           console.log(error);
         })
       }

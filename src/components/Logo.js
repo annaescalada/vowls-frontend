@@ -3,7 +3,7 @@ import styled from 'styled-components'
 
 const LogoText = styled.p`
     font-family: 'Concert One', cursive;
-    font-size:3.5em;
+    font-size:3.2em;
     text-transform: uppercase;
     color: #5cc1a5;
     text-align: center;
@@ -14,7 +14,7 @@ const LogoText = styled.p`
 `;
 
 const SubText = styled.p`
-    font-size:1.2em;
+    font-size:1em;
     color: #707070;
     text-align: center;
     padding:0;

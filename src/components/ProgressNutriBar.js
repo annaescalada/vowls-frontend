@@ -12,7 +12,7 @@ const ProgressContainerSC = styled.div`
 
 const RoundFullSC = styled.div`
     height: 15px;
-    width:25px!important;
+    width:30px!important;
     border: 1px solid #c25c78;
     border-radius:100%;
     background-color:#c25c78;

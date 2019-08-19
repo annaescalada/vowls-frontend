@@ -12,3 +12,18 @@ export const foodGroupToName = (group => {
     const foodGroupsTitles = ['Cereales integrales', 'Alimentos proteicos', 'Tubérculos', 'Fruta', 'Frutos rojos', 'Crucíferas', 'Hortalizas', 'Otras verduras', 'Omega 3', 'Grasas saludables', 'Lácteos vegetales'];
     return foodGroupsTitles[foodGroups.indexOf(group)]
 });
+
+export const portionConvert = ((group, portion) => {
+    let result;
+    switch (group) {
+        case 'dairy':
+        case 'fruit':
+        case 'berries':
+            result = 1;
+            break;
+        default:
+            result = portion;
+            break;
+    }
+    return result;
+});

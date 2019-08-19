@@ -2,12 +2,12 @@ import React, { Component } from 'react'
 import withAuth from '../components/withAuth.js';
 import foodService from '../services/food-service'
 import Loading from '../components/Loading'
-import {portionConvert} from '../helpers/portionConvert'
 import styled from 'styled-components'
-import { foodGroups, foodGroupToIcon, foodGroupToName} from '../helpers/foodConvert'
+import { foodGroups, foodGroupToIcon, foodGroupToName, portionConvert} from '../helpers/foodConvert'
+import Instructions from '../components/Instructions.js';
 
 const IconSC = styled.img`
-  height:80px;
+  height:70px;
   width:auto;
   margin-right:25px;
 `;
@@ -16,6 +16,9 @@ const FoodGroupsArticleSC = styled.article`
   display:flex;
   flex-direction:column;
   margin-bottom: 50px;
+  background: #c25c7817;
+  border-radius: 25px;
+  padding: 4%;
 `;
 
 const FoodsContainerSC = styled.div`
@@ -33,7 +36,7 @@ const FoodsPortionContainerSC = styled.div`
 
 const FoodTitle =styled.p`
   font-weight: 600;
-  font-size: 25px;
+  font-size: 20px;
   width: 100%;
 `;
 
@@ -66,6 +69,7 @@ class Foods extends Component {
     <section>
       {!this.state.isLoading ?
       <>
+        <Instructions foods={true}></Instructions>
         {foodGroups.map((group, index) => {
           return (
             <FoodGroupsArticleSC>

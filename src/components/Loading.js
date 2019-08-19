@@ -2,12 +2,12 @@ import React from 'react';
 import styled from 'styled-components';
 
 const LoadingImg = styled.img`
-    width: 200px;
+    width: 150px;
 `
 
 const LoadingIcon = styled.img`
     width: 50px;
-    margin-bottom:20px;
+    margin-bottom:0px;
 `
 
 const LoadingContainer = styled.div`
@@ -17,11 +17,10 @@ const LoadingContainer = styled.div`
     flex-direction:column;
 `
 
-const LoadingText = styled.p`
-    font-size:25px!important;
+const LoadingText = styled.p`
     display:inline;
     line-height:2em;
-    margin-bottom: 100px;
+    margin-bottom: 20px;
     width:80%;
 `
 

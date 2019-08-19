@@ -9,7 +9,8 @@ class PieChart extends Component {
 state = {
     options: {
         width: 350,
-        colors: ['#93C3EE', '#E5C6A0', '#669DB5', '#94A74A'],
+        labels: ['Cereales integrales', 'Alimentos proteicos', 'Tubérculos', 'Cruciferas', 'Hortalizas', 'Otras verduras'],
+        colors: ['#f1f1f1'],
         fill: {
         type: 'image',
         opacity: 1,
@@ -39,7 +40,21 @@ state = {
         }
         }]
     },
-    series: [1,1,1,1,1,1],
+    events: {
+        click: undefined,
+      beforeMount: undefined,
+      mounted: undefined,
+      updated: undefined,
+      legendClick: undefined,
+      selection: undefined,
+      dataPointSelection: undefined,
+      dataPointMouseEnter: undefined,
+      dataPointMouseLeave: undefined,
+      beforeZoom: undefined,
+      zoomed: undefined,
+      scrolled: undefined,
+      },
+    series: [15, 20, 15, 16, 18, 16],
     }
 
 render() {

@@ -14,7 +14,7 @@ const NavDivSC = styled.div`
 const MenuPSC = styled.p`
  font-size:15px;
  text-align:center;
- margin:0;
+ margin:5px 0 0 0;
  color: #707070;
 
 `

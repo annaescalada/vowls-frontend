@@ -9,6 +9,7 @@ import VowlDetails from '../components/VowlDetails';
 import VowlListCard from '../components/VowlListCard';
 import {InputSC} from '../pages/NutriForm';
 import styled from 'styled-components'
+import { processError } from '../helpers/processError'
 
 const SavedVowlTitleSC = styled.h3`
   font-weight: 600;
@@ -74,7 +75,7 @@ class Vowls extends Component {
       })
     })
     .catch( error => {
-      this.setState ({error: 'Ha habido un error, por favor inténtalo de nuevo.'});
+      this.setState ({error: processError(error.response.status)});
       console.log(error);
     })
 

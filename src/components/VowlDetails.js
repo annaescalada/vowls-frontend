@@ -29,7 +29,10 @@ const ChartContainerSC = styled.div`
 `;
 
 const IngredientContainerSC = styled.div`
-  margin-top:30px;
+  margin:20px 0 20px 0;
+  background: #c25c7817;
+  border-radius: 25px;
+  padding: 4%;
 `;
 
 const IngredientSC = styled.p`
