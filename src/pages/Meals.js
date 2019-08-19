@@ -15,6 +15,10 @@ const MealContainerSC = styled.div`
   align-items:center;
   margin-bottom: 40px;
   flex-wrap: wrap;
+  background: #c25c7817;
+  border-radius: 25px;
+  padding: 4%;
+  width: 100%;
 `;
 
 const FoodTitle =styled.p`
@@ -23,6 +27,24 @@ const FoodTitle =styled.p`
   width: 100%;   
   margin-bottom: 30px; 
   text-align:center;
+`;
+
+const DateButtonSC = styled.button`
+  background-color:#c25c78;
+  color:white;
+  border: none;
+  text-transform: none;
+  font-weight: 300;
+  font-family: 'Raleway', sans-serif;
+  font-size: 30px;
+  width:20%;
+  height: 60px;
+  border-radius: 10px;
+  margin: 2%;
+`;
+
+const DateContainerSC = styled.div`
+  display:flex;
 `;
 
 
@@ -52,37 +74,59 @@ class Meals extends Component {
       T: false,
       U: false,
       V: false },
+
+      score: 0,
+
+      date: new Date(),
+
+
   } 
 
   handleClick = (key) => {
+    let newScore;
     if (this.state.buttons[key] === true) {
+      newScore = (this.state.score - 1);
       this.setState({
         buttons: { ...this.state.buttons, [key]: false},
+        score: newScore,
       })
+      
     } else {
+      newScore = (this.state.score + 1)
+
         this.setState({
           buttons: {...this.state.buttons, [key]: true},
+          score: newScore,
         })
       }
+    
+    // send Date, Score, Buttons to backend
     }
 
   componentDidMount() {
     setTimeout(()=> this.setState({
       isLoading:false
-    }) , 3000)
+    }) , 1000)
   }
   
 
   render () {
     const foodGroupsTitles = ['Cereales integrales', 'Alimentos proteicos', 'Tubérculos', 'Fruta', 'Frutos rojos', 'Crucíferas', 'Hortalizas', 'Otras verduras', 'Omega 3', 'Grasas saludables', 'Lácteos vegetales'];
     const foodGroupsIcons = ['./images/Food-icons/cereals.png', './images/Food-icons/Protein.png', './images/Food-icons/Tubers.png', './images/Food-icons/Fruit.png', './images/Food-icons/Berries.png', './images/Food-icons/Cruciferous.png', './images/Food-icons/Greens.png', './images/Food-icons/Otherveg.png', './images/Food-icons/Omega.png', './images/Food-icons/Fat.png', './images/Food-icons/Dairy.png'] 
-    const { buttons } = this.state;
+    const { buttons, score } = this.state;
     console.log(this.state);
     return (
     <>
     <section>
       {!this.state.isLoading ?
       <>
+        <DateContainerSC>
+          {/* <DateButtonSC>-</DateButtonSC> */}
+          <FoodTitle>Fecha: <span>{ this.state.date.getDate() }/{ this.state.date.getMonth() }/{ this.state.date.getFullYear() }</span></FoodTitle>
+          {/* <DateButtonSC>+</DateButtonSC> */}
+        </DateContainerSC>
+        <FoodTitle>Puntuación:  <span>{ ((score / Object.keys(this.state.buttons).length) * 100).toFixed(1) } %</span></FoodTitle>
+        <progress value={ score } max={Object.keys(this.state.buttons).length}></progress>
         <FoodTitle>Desayuno</FoodTitle>
         <MealContainerSC>
           <IconSC className={!buttons.A ? 'greyScale' :null } onClick={() => this.handleClick('A')} src={foodGroupsIcons[3]} alt=""/>

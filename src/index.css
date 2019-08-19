@@ -146,6 +146,7 @@ nav div {
 
 .selected p, span {
   color:#c25c78;
+  font-weight: 400;
 }
 
 hr {
@@ -171,4 +172,22 @@ hr {
 
 .greyScale {
   filter: grayscale(100%);
+}
+
+progress {
+  width: 100%;
+  height: 35px;
+  margin-bottom: 20px;
+  background: white;
+}
+
+progress[value]::-webkit-progress-bar {
+  background-color: #eee;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(126, 126, 126, 0.25) inset;
+}
+
+progress[value]::-webkit-progress-value {
+  background-color: #5cc1a5;
+  border-radius: 10px 0 0 10px; 
 }
