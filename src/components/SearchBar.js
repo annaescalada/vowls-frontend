@@ -37,6 +37,7 @@ const SearchInputSC = styled.input`
   border: none!important;
   border-radius: 50px!important;
   margin:0!important;
+  padding:0!important;
 `;
 
 function SearchBar(props) {

@@ -7,7 +7,7 @@ import styled from 'styled-components'
 import { foodGroups, foodGroupToIcon, foodGroupToName} from '../helpers/foodConvert'
 
 const IconSC = styled.img`
-  height:100px;
+  height:80px;
   width:auto;
   margin-right:25px;
 `;
