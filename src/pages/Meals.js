@@ -113,7 +113,7 @@ class Meals extends Component {
 
   render () {
     const foodGroupsTitles = ['Cereales integrales', 'Alimentos proteicos', 'Tubérculos', 'Fruta', 'Frutos rojos', 'Crucíferas', 'Hortalizas', 'Otras verduras', 'Omega 3', 'Grasas saludables', 'Lácteos vegetales'];
-    const foodGroupsIcons = ['./images/Food-icons/cereals.png', './images/Food-icons/Protein.png', './images/Food-icons/Tubers.png', './images/Food-icons/Fruit.png', './images/Food-icons/Berries.png', './images/Food-icons/Cruciferous.png', './images/Food-icons/Greens.png', './images/Food-icons/Otherveg.png', './images/Food-icons/omega.png', './images/Food-icons/Fat.png', './images/Food-icons/Dairy.png'] 
+    const foodGroupsIcons = ['./images/Food-icons/Cereals.png', './images/Food-icons/Protein.png', './images/Food-icons/Tubers.png', './images/Food-icons/Fruit.png', './images/Food-icons/Berries.png', './images/Food-icons/Cruciferous.png', './images/Food-icons/Greens.png', './images/Food-icons/Otherveg.png', './images/Food-icons/omega.png', './images/Food-icons/Fat.png', './images/Food-icons/Dairy.png'] 
     const { buttons, score } = this.state;
     console.log(this.state);
     return (
