@@ -92,8 +92,7 @@ class Foods extends Component {
             </FoodGroupsArticleSC>
           )
         })}
-        <p><span>* Los gramajes corresponden al peso del alimento en crudo.</span></p>
-      </>
+        </>
 
       : 
       
