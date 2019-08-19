@@ -73,7 +73,8 @@ class Meals extends Component {
       S: false,
       T: false,
       U: false,
-      V: false },
+      V: false,
+      W: false },
 
       score: 0,
 
@@ -112,7 +113,7 @@ class Meals extends Component {
 
   render () {
     const foodGroupsTitles = ['Cereales integrales', 'Alimentos proteicos', 'Tubérculos', 'Fruta', 'Frutos rojos', 'Crucíferas', 'Hortalizas', 'Otras verduras', 'Omega 3', 'Grasas saludables', 'Lácteos vegetales'];
-    const foodGroupsIcons = ['./images/Food-icons/cereals.png', './images/Food-icons/Protein.png', './images/Food-icons/Tubers.png', './images/Food-icons/Fruit.png', './images/Food-icons/Berries.png', './images/Food-icons/Cruciferous.png', './images/Food-icons/Greens.png', './images/Food-icons/Otherveg.png', './images/Food-icons/Omega.png', './images/Food-icons/Fat.png', './images/Food-icons/Dairy.png'] 
+    const foodGroupsIcons = ['./images/Food-icons/cereals.png', './images/Food-icons/Protein.png', './images/Food-icons/Tubers.png', './images/Food-icons/Fruit.png', './images/Food-icons/Berries.png', './images/Food-icons/Cruciferous.png', './images/Food-icons/Greens.png', './images/Food-icons/Otherveg.png', './images/Food-icons/omega.png', './images/Food-icons/Fat.png', './images/Food-icons/Dairy.png'] 
     const { buttons, score } = this.state;
     console.log(this.state);
     return (
@@ -129,6 +130,7 @@ class Meals extends Component {
         <progress value={ score } max={Object.keys(this.state.buttons).length}></progress>
         <FoodTitle>Desayuno</FoodTitle>
         <MealContainerSC>
+          <IconSC className={!buttons.W ? 'greyScale' :null } onClick={() => this.handleClick('W')} src={foodGroupsIcons[0]} alt=""/>
           <IconSC className={!buttons.A ? 'greyScale' :null } onClick={() => this.handleClick('A')} src={foodGroupsIcons[3]} alt=""/>
           <IconSC className={!buttons.B ? 'greyScale' :null } onClick={() => this.handleClick('B')} src={foodGroupsIcons[4]} alt=""/>
           <IconSC className={!buttons.C ? 'greyScale' :null } onClick={() => this.handleClick('C')} src={foodGroupsIcons[10]} alt=""/>
