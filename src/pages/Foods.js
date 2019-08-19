@@ -56,7 +56,7 @@ class Foods extends Component {
     .then((foods) => {
       this.setState(foods);
       setTimeout(()=> this.setState({isLoading:false})
-    , 3000)})
+    , 2000)})
     .catch((error) => {
       console.log(error);
     })

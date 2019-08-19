@@ -8,17 +8,6 @@ import {updateInfo} from '../helpers/updateInfo'
   color: #c25c78!important;
 `;
 
-const ImgContainer2SC = styled.div`
-  position: relative;
-  left: -120px;
-  height: 240px;
-`
-
-const Vowl2 = styled.img`
-  height: 100%;
-  transform: rotate(180deg);
-`
-
 const NutriTitleSC = styled.p `
   font-weight: 600;
 `
@@ -166,9 +155,6 @@ class NutriForm extends Component {
           {formPage > 0 ? <button className='reversed' onClick={this.handleBack}>Atrás</button> : null }
         </form>
 
-        <ImgContainer2SC>
-          <Vowl2 src='images/vowl2.jpg'/>
-        </ImgContainer2SC>
       </>
     )
   }

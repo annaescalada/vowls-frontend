@@ -1,19 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import withAuth from '../components/withAuth';
-import styled from 'styled-components'
 import { processError } from '../helpers/processError'
-
-export const ImgContainer = styled.div`
-  position: relative;
-  height:300px;
-  height: 290px;
-  top: 30px;
-`
-
-export const Vowl1 = styled.img`
-  width:100%;
-`
+import ImageBottom from '../components/ImageBottom';
 
 class Login extends Component {
   state = {
@@ -56,9 +45,7 @@ class Login extends Component {
         <p>Aún no te has registrado?
             <Link to={'/signup'}> Crear una cuenta</Link>
         </p>
-        <ImgContainer>
-          <Vowl1 src='images/vowl1.jpg'/>
-        </ImgContainer>
+        <ImageBottom></ImageBottom>
       </>
     )
   }

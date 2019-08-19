@@ -66,7 +66,7 @@ class Meals extends Component {
   componentDidMount() {
     setTimeout(()=> this.setState({
       isLoading:false
-    }) , 500)
+    }) , 2000)
   }
   
 

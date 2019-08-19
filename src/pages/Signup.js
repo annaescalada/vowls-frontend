@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import withAuth from '../components/withAuth.js';
-import { ImgContainer, Vowl1 } from './Login.js';
 import { processError } from '../helpers/processError'
+import ImageBottom from '../components/ImageBottom.js';
 
 class Signup extends Component {
 
@@ -51,9 +51,7 @@ class Signup extends Component {
         <p>Ya tienes una cuenta? 
           <Link to={'/'}> Iniciar sesión</Link>
         </p>
-        <ImgContainer>
-          <Vowl1 src='images/vowl1.jpg'/>
-        </ImgContainer>
+        <ImageBottom></ImageBottom>
       </>
     )
   }
