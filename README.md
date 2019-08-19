@@ -181,6 +181,7 @@ Vowl model
 | DELETE        | /auth/delete                | (empty)                     | 201            | 400          | Checks if user is logged in and deletes user account                                            |
 
 | GET         | /foods/all              |   (empty)                   | 200          | 400          | Checks if user is logged in and shows all foods.                                        |
+| GET         | /vowl/getOne/:id              |   (empty)                   | 200          | 400          | Checks if user is logged in and shows one specific vowl. 
 
 | GET         | /vowls/all                     |   (empty)                  | 200          | 400          | Checks if user is logged in and shows all saved vowls.                                        |
 
