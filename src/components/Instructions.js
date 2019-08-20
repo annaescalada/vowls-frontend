@@ -62,7 +62,6 @@ class InstructionsMeals extends Component {
     }
 
 handleClickInstructions = () => {
-    console.log(this.state.instructions);
 
     if (this.state.instructions === false) {
     this.setState({
@@ -84,13 +83,13 @@ handleClickInstructions = () => {
                 </InstructionsContainerSC>
                 {this.state.instructions && this.state.foods ?
                 <InstructionsSubContainerSC>
-                    <InstructionsTextSC>A continuación tienes <span> un listado de alimentos y el tamaño de ración adaptada a tus necesidades</span></InstructionsTextSC>
+                    <InstructionsTextSC>A continuación tienes el <span>listado de ingredientes y el tamaño de la ración personalizada,</span> adaptada a tus necesidades.</InstructionsTextSC>
                     <InstructionsTextSC>Los gramajes corresponden al peso de los alimentos en crudo.</InstructionsTextSC>
                 </InstructionsSubContainerSC>
                 : null}
                 {this.state.instructions && this.state.meals ?
                 <InstructionsSubContainerSC>
-                    <InstructionsTextSC>Para subir la puntuación, <span> selecciona los grupos de alimentos a medida que los consumes a lo largo del día</span>. Consulta los alimentos de cada grupo y el tamaño de la ración personalizada en la pestaña de foods.</InstructionsTextSC>
+                    <InstructionsTextSC>A continuación tienes los diferentes <span>grupos de alimentos repartidos a lo largo del día</span>. Cada icono corresponde a una ración. Para subir la puntuación, selecciona los alimentos a medida que los consumes.</InstructionsTextSC>
                     <FoodGroupContainerSC>
                     {foodGroups.map(group => {
                         return (

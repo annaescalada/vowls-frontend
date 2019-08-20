@@ -105,8 +105,6 @@ class Meals extends Component {
       newMeals.push(currentMeal)
     }
 
-    console.log(newMeals);
-
     mealsService.saveMeals( {newMeals} )
     .then(() => {
       console.log('meals updated');

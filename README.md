@@ -187,7 +187,9 @@ Vowl model
 
 | POST         | /vowls/save                   | {user, foods}        | 200          |  400        | Checks if user is logged in and fields not empty (422), creates a new vowl.                              |
 
-| DELETE      | /vowls/delete/:id     | (body)                               | 201         | 400          | Checks if user is logged in and if vowl exists, deletes specific vowl                                            |
+| DELETE      | /vowls/delete/:id     | (empty)                               | 201         | 400          | Checks if user is logged in and if vowl exists, deletes specific vowl                                            |
+
+| DELETE      | /meals/save     | { meals }                              | 201         | 400          | Saves current meals in user.                                            |
 
 
 <br>

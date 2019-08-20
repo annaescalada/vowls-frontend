@@ -48,7 +48,7 @@ class Navbar extends Component {
                 <LogoImgSC src="../images/Menu-icons/Food-icon-pink.png" alt=""/>
                 : <LogoImgSC src="../images/Menu-icons/Food-icon-grey.png" alt=""/>}
               </div>
-              <MenuPSC>foods</MenuPSC>
+              <MenuPSC>ingredientes</MenuPSC>
             </NavDivSC>
           </NavLink>
 
@@ -59,7 +59,7 @@ class Navbar extends Component {
                   <LogoImgSC src="../images/Menu-icons/Meal-icon-pink.png" alt=""/>
                   :<LogoImgSC src="../images/Menu-icons/Meal-icon-grey.png" alt=""/> }
               </div>
-              <MenuPSC>meals</MenuPSC>
+              <MenuPSC>objetivo</MenuPSC>
             </NavDivSC>
           </NavLink>
 
@@ -70,7 +70,7 @@ class Navbar extends Component {
                   <LogoImgSC src="../images/Menu-icons/Profile-icon-pink.png" alt=""/>
                   : <LogoImgSC src="../images/Menu-icons/Profile-icon-grey.png" alt=""/>}
               </div>
-              <MenuPSC>profile</MenuPSC>
+              <MenuPSC>perfil</MenuPSC>
             </NavDivSC>
           </NavLink>
       </nav>

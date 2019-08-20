@@ -19,7 +19,7 @@ class Signup extends Component {
 
     this.props.signup({ username, password })
       .then( (user) => {
-        console.log(user)
+        console.log('user signed up')
         this.setState({
             username: '',
             password: '',
@@ -27,7 +27,6 @@ class Signup extends Component {
       })
       .catch( error => {
         this.setState ({error: processError(error.response.status)});
-        console.log(error.response.status);
       })
   }
 

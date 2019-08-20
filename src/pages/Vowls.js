@@ -54,7 +54,7 @@ class Vowls extends Component {
     });
     const generatedVowl = randomVowl(this.state.foods);
     vowlsService.lastGeneratedVowl(generatedVowl)
-    .then(({}) => {
+    .then(() => {
       console.log('meals updated');
       this.props.me();
       setTimeout(() => 
@@ -81,7 +81,6 @@ class Vowls extends Component {
       })
     })
     .catch( error => {
-      this.setState ({error: processError(error.response.status)});
       console.log(error);
     })
     this.setState({
@@ -95,7 +94,6 @@ class Vowls extends Component {
     this.setState({
       isSavedVowlShowing:false,
     });
-    console.log(vowlID);
     vowlsService.deleteVowl(vowlID)
     .then(({updatedUser}) => {
       this.setState({
@@ -114,7 +112,6 @@ class Vowls extends Component {
     })
     vowlsService.getOne(vowlID)
     .then(({vowl}) => {
-      console.log(vowl);
       this.setState({
         isVowlShowing:false,
         isSavedMessageShowing:false,
@@ -147,7 +144,6 @@ class Vowls extends Component {
 
   render() {
     const { user, isLoading, isVowlLoading, isVowlShowing, isSavedMessageShowing, isSavedVowlShowing, savedVowlShowing, vowl, search } = this.state;
-    console.log(this.props)
     return (
       <>
       <section>

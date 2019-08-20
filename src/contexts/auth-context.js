@@ -43,7 +43,6 @@ class AuthProvider extends Component {
   userUpdate = (user) => {
     return authService.update(user)
     .then((user) => {
-        console.log('in update auth-context', user);
         this.setState({
           user: user,
         });

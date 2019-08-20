@@ -78,7 +78,7 @@ class NutriForm extends Component {
     const {GED, IMC, portion} = updateInfo(age, gender, weight, height, activity);
     this.props.update({ name, age, gender, weight, height, activity, GED, IMC, portion })
     .then( (user) => {
-      console.log(user)
+      console.log('nutriform completed')
     })
     .catch( error => {
       this.setState ({error: 'Asegúrate de haber rellenado todos los campos e inténtalo de nuevo.'});
@@ -88,7 +88,6 @@ class NutriForm extends Component {
 
   render() {
     const {formPage, error, name, age, gender, weight, height, activity} = this.state;
-    console.log(formPage, name, age, gender, weight, height, activity);
     return (
       <>
       <ProgressNutriBar num={formPage}/>
