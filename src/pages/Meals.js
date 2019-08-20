@@ -66,10 +66,6 @@ class Meals extends Component {
     }
 
   componentDidMount() {
-    setTimeout(()=> this.setState({
-      isLoading:false
-    }) , 2000)
-
     const { meals } = this.state.user;
     let lastMealDate;
 
@@ -81,8 +77,12 @@ class Meals extends Component {
       this.setState ({
         buttons: meals[meals.length - 1].buttons,
         score: meals[meals.length - 1].score,
-      })
-    }
+        isLoading:false,
+      })} else {
+        setTimeout(()=> this.setState({
+          isLoading:false
+        }) , 2000)
+      }
   }
 
   componentWillUnmount() {

@@ -45,7 +45,7 @@ class Vowls extends Component {
     this.setState({[name]: value});
   }
 
-  handleVowlClick = (event) => {
+  handleVowlClick = () => {
     this.setState({
       isVowlLoading: true, 
       isVowlShowing:false,
@@ -56,13 +56,17 @@ class Vowls extends Component {
     this.setState({ 
       vowl: generatedVowl,
     });
-    console.log(generatedVowl);
     vowlsService.lastGeneratedVowl(generatedVowl)
     .then(({updatedUser}) => {
+      console.log('meals updated');
       this.setState({
         user: updatedUser,
       })
     })
+    .catch( error => {
+      console.log(error);
+    })
+    this.props.me();
     setTimeout(() => 
       this.setState({
         isVowlLoading:false,
@@ -85,7 +89,6 @@ class Vowls extends Component {
       this.setState ({error: processError(error.response.status)});
       console.log(error);
     })
-
     this.setState({
       isVowlShowing:false,
       isSavedMessageShowing: true,
