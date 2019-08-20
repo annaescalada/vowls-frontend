@@ -56,6 +56,13 @@ class Vowls extends Component {
     this.setState({ 
       vowl: generatedVowl,
     });
+    console.log(generatedVowl);
+    vowlsService.lastGeneratedVowl(generatedVowl)
+    .then(({updatedUser}) => {
+      this.setState({
+        user: updatedUser,
+      })
+    })
     setTimeout(() => 
       this.setState({
         isVowlLoading:false,
@@ -130,6 +137,12 @@ class Vowls extends Component {
     .catch((error) => {
       console.log(error);
     });
+    if (this.props.user.lastGeneratedVowl) {
+      this.setState({
+        isVowlShowing:true,
+        vowl: this.props.user.lastGeneratedVowl,
+      })
+    } else {console.log('no vowl')}
     this.setState({ 
       isLoading: false })
   }

@@ -22,33 +22,27 @@ class AuthService {
 
   logout() {
     return this.auth.post('/auth/logout')
-      .then(response => response.data)
+      .then(({ data }) => data);
   }
 
   me() {
     return this.auth.get('/auth/me')
-    .then(response => response.data)
+    .then(({ data }) => data);
   }
 
   update(newUser) {
     return this.auth.put('/auth/update', newUser)
-    .then(({ data }) => {
-      console.log('in service update', data)
-      return data;
-    });
+    .then(({ data }) => data);
   }
 
   changePassword(newPassword) {
     return this.auth.put('/auth/change-password', newPassword)
-    .then(({ data }) => {
-      console.log("in service change password", data);
-      return data;
-    })
+    .then(({ data }) => data);
   }
 
   delete() {
     return this.auth.delete('/auth/delete')
-    .then(response => response.data)
+    .then(({ data }) => data);
   }
 
 }

@@ -53,7 +53,6 @@ class AuthProvider extends Component {
   userChangePassword = (newPassword) => {
     return authService.changePassword(newPassword)
     .then((user) => {
-      console.log('in change pass auth-context', user);
       this.setState({
         user: user,
       })

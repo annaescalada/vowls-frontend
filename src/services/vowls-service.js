@@ -23,6 +23,11 @@ class VowlsService {
     .then(({data}) => data);
   }
 
+  lastGeneratedVowl(vowl) {
+    return this.vowls.put('/vowls/last-vowl', vowl)
+    .then(({ data }) => data);
+  }
+
   deleteVowl(vowlID) {
     return this.vowls.delete(`vowls/delete/${vowlID}`)
     .then(({data}) => data);

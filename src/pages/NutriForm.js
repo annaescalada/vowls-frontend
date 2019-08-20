@@ -23,6 +23,17 @@ const FieldsetSC = styled.fieldset`
   flex-directon_column;
 `
 
+const ImgContainerSC = styled.div`
+    display:flex;
+    margin-top: 30px;
+    align-items:center;
+    text-align:center;
+    flex-direction:column;
+`
+const ImgSC = styled.img`
+    width: 120px;
+`
+
 class NutriForm extends Component {
   state = {
     formPage: 0,
@@ -153,6 +164,9 @@ class NutriForm extends Component {
           {formPage < 2 ? <button onClick={this.handleNext}>Siguiente ></button> : null }
           {formPage === 2 ? <button type='submit' onClick={this.handleFormSubmit}>Enviar</button> : null }
           {formPage > 0 ? <button className='reversed' onClick={this.handleBack}>Atrás</button> : null }
+          <ImgContainerSC>
+          <ImgSC src="./images/Food-icons/Vowl.png" alt=""/>
+          </ImgContainerSC>
         </form>
 
       </>
