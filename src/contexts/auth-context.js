@@ -70,7 +70,7 @@ class AuthProvider extends Component {
     })
   }
 
-  componentDidMount() {
+  getMe = () => {
     authService.me()
     .then(user => {
       this.setState({
@@ -88,6 +88,10 @@ class AuthProvider extends Component {
     })
   }
 
+  componentDidMount() {
+    this.getMe();
+  }
+
   render() {
     const {user, isLoggedIn, isLoading} = this.state;
     return (
@@ -101,6 +105,7 @@ class AuthProvider extends Component {
                 signup: this.userSignUp,
                 logout: this.userLogout,
                 update: this.userUpdate,
+                me: this.getMe,
                 changePassword: this.userChangePassword,
                 deleteUser: this.userDelete
               }

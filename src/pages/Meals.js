@@ -5,9 +5,13 @@ import styled from 'styled-components'
 import Instructions from '../components/Instructions.js';
 import BasicMeals from '../components/BasicMeals.js';
 import MealsDateScore from '../components/MealsDateScore.js';
+import mealsService from '../services/meals-service';
+import {compareDates} from '../helpers/compareDates';
+import authService from '../services/auth-service.js';
 
 class Meals extends Component {
   state ={
+    user: this.props.user,
     isLoading: true,
     buttons: { 
       A: false, 
@@ -36,7 +40,7 @@ class Meals extends Component {
 
       score: 0,
 
-      date: new Date(),
+      date: new Date(2019, 12, 12),
 
       instructions:false,
 
@@ -59,19 +63,66 @@ class Meals extends Component {
           score: newScore,
         })
       }
-    
-    // send Date, Score, Buttons to backend
     }
 
   componentDidMount() {
     setTimeout(()=> this.setState({
       isLoading:false
     }) , 2000)
+
+    const { meals } = this.state.user;
+    let lastMealDate;
+
+    if (meals[meals.length - 1]) {
+      lastMealDate = new Date(meals[meals.length - 1].date);
+    } else {lastMealDate = undefined}
+
+    if (lastMealDate && compareDates(lastMealDate, this.state.date)) {
+      this.setState ({
+        buttons: meals[meals.length - 1].buttons,
+        score: meals[meals.length - 1].score,
+      })
+    }
   }
-  
+
+  componentWillUnmount() {
+    const { buttons, date, score } = this.state;
+    const currentMeal = { buttons, date, score };
+    
+    const { meals } = this.state.user;
+    const newMeals = [...meals];
+
+    let lastMealDate;
+    if (meals[meals.length - 1]) {
+      lastMealDate = new Date(meals[meals.length - 1].date);
+    } else {lastMealDate = undefined}
+
+    if (lastMealDate && compareDates(lastMealDate, currentMeal.date)) {
+      newMeals.splice([newMeals.length - 1], 1, currentMeal);
+    } else {
+      newMeals.push(currentMeal)
+    }
+
+    console.log(newMeals);
+
+    mealsService.saveMeals( {newMeals} )
+    .then(({updatedUser}) => {
+      console.log('meals updated');
+      this.setState({
+        user: updatedUser,
+      })
+    })
+    .catch( error => {
+      console.log(error);
+    })
+
+    this.props.me();
+  }
+ 
 
   render () {
     const { buttons, score } = this.state;
+    console.log(this.props.user);
     console.log(this.state);
     return (
     <>
