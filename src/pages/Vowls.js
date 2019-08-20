@@ -53,22 +53,20 @@ class Vowls extends Component {
       isSavedVowlShowing:false,
     });
     const generatedVowl = randomVowl(this.state.foods);
-    this.setState({ 
-      vowl: generatedVowl,
-    });
     vowlsService.lastGeneratedVowl(generatedVowl)
-    .then(({updatedUser}) => {
+    .then(({}) => {
       console.log('meals updated');
+      this.props.me();
+      setTimeout(() => 
+        this.setState({
+          vowl: generatedVowl,
+          isVowlLoading:false,
+          isVowlShowing:true,
+        }), 2000)
     })
     .catch( error => {
       console.log(error);
     })
-    this.props.me();
-    setTimeout(() => 
-      this.setState({
-        isVowlLoading:false,
-        isVowlShowing:true,
-      }), 2000)
   }
 
   handleSaveVowlClick = () => {
