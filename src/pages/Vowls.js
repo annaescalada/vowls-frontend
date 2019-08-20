@@ -59,9 +59,6 @@ class Vowls extends Component {
     vowlsService.lastGeneratedVowl(generatedVowl)
     .then(({updatedUser}) => {
       console.log('meals updated');
-      this.setState({
-        user: updatedUser,
-      })
     })
     .catch( error => {
       console.log(error);
