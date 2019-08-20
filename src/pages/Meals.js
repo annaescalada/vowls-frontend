@@ -11,7 +11,6 @@ import authService from '../services/auth-service.js';
 
 class Meals extends Component {
   state ={
-    user: this.props.user,
     isLoading: true,
     buttons: { 
       A: false, 
@@ -66,30 +65,33 @@ class Meals extends Component {
     }
 
   componentDidMount() {
-    const { meals } = this.state.user;
-    let lastMealDate;
-
-    if (meals[meals.length - 1]) {
-      lastMealDate = new Date(meals[meals.length - 1].date);
-    } else {lastMealDate = undefined}
-
-    if (lastMealDate && compareDates(lastMealDate, this.state.date)) {
-      this.setState ({
-        buttons: meals[meals.length - 1].buttons,
-        score: meals[meals.length - 1].score,
-        isLoading:false,
-      })} else {
-        setTimeout(()=> this.setState({
-          isLoading:false
-        }) , 2000)
-      }
+    this.props.me()
+    .then(() => {
+      const { meals } = this.props.user;
+      let lastMealDate;
+  
+      if (meals[meals.length - 1]) {
+        lastMealDate = new Date(meals[meals.length - 1].date);
+      } else {lastMealDate = undefined}
+  
+      if (lastMealDate && compareDates(lastMealDate, this.state.date)) {
+        this.setState ({
+          buttons: meals[meals.length - 1].buttons,
+          score: meals[meals.length - 1].score,
+          isLoading:false,
+        })} else {
+          setTimeout(()=> this.setState({
+            isLoading:false
+          }) , 2000)
+        }
+    })
   }
 
   componentWillUnmount() {
     const { buttons, date, score } = this.state;
     const currentMeal = { buttons, date, score };
     
-    const { meals } = this.state.user;
+    const { meals } = this.props.user;
     const newMeals = [...meals];
 
     let lastMealDate;
@@ -106,24 +108,17 @@ class Meals extends Component {
     console.log(newMeals);
 
     mealsService.saveMeals( {newMeals} )
-    .then(({updatedUser}) => {
+    .then(() => {
       console.log('meals updated');
-      this.setState({
-        user: updatedUser,
-      })
     })
     .catch( error => {
       console.log(error);
     })
-
-    this.props.me();
   }
  
 
   render () {
     const { buttons, score } = this.state;
-    console.log(this.props.user);
-    console.log(this.state);
     return (
     <>
     <section>

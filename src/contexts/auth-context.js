@@ -71,7 +71,7 @@ class AuthProvider extends Component {
   }
 
   getMe = () => {
-    authService.me()
+    return authService.me()
     .then(user => {
       this.setState({
         user,
