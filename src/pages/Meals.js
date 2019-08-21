@@ -44,7 +44,6 @@ class Meals extends Component {
 
     mealsService.saveMeals( {newMeals} )
     .then(() => {
-      
     })
     .catch( error => {
       console.log(error);

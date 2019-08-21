@@ -74,15 +74,13 @@ class Vowls extends Component {
     .then(({updatedUser}) => {
       this.setState({
         user: updatedUser,
+        isVowlShowing:false,
+        isSavedMessageShowing: true,
+        name:'',
       })
     })
     .catch( error => {
       console.log(error);
-    })
-    this.setState({
-      isVowlShowing:false,
-      isSavedMessageShowing: true,
-      name:'',
     })
   }
 

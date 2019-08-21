@@ -21,7 +21,7 @@ class ChangePassword extends Component {
         const { newPassword } = this.state
     
         this.props.changePassword({ password: newPassword})
-        .then((user) => {
+        .then(() => {
           this.setState({editing:false})
         })
         .catch( error => {

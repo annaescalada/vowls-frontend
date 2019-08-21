@@ -29,6 +29,7 @@ const DateContainerSC = styled.div`
 `;
 
 function MealsDateScore(props) {
+
     return (
         <>
         <DateContainerSC>

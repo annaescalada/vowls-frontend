@@ -33,7 +33,7 @@ class Profile extends Component {
     const { name, age, gender, weight, height, activity } = this.state
     const {GED, IMC, portion} = updateInfo(age, gender, weight, height, activity);
     this.props.update({ name, age, gender, weight, height, activity, GED, IMC, portion })
-    .then( (user) => {
+    .then( () => {
       this.setState ({editing: false});
     })
     .catch( error => {
