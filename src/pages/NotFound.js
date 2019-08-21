@@ -29,7 +29,7 @@ function NotFound() {
       <h2>Pagina no encontrada</h2>
       <p><span>La página que buscas no existe</span>.</p>
       <ImgContainerSC>
-        <ImgSC src="./images/Food-icons/Vowl.png"></ImgSC>
+        <ImgSC src="./images/Food-icons/Vowl.png" alt='veggie vowl illustration'></ImgSC>
       </ImgContainerSC>
     </NotFoundContainerSC>
     </>

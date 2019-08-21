@@ -44,7 +44,7 @@ function VowlDetails(props) {
     const { vowl } = props;
     return (
         <div>
-        <SalsaSC src={vowl.salsa.img}></SalsaSC>
+        <SalsaSC src={vowl.salsa.img} alt='salsa in vowl'></SalsaSC>
         <ChartContainerSC>
             <VowlChart cereal={vowl.cereal} protein={vowl.protein} tuber={vowl.tuber} cruciferous={vowl.cruciferous} greens={vowl.greens} othervegs={vowl.othervegs} salsa={vowl.salsa}></VowlChart> 
             </ChartContainerSC>

@@ -14,7 +14,7 @@ function ImageBottom() {
     return (
         <>
         <ImgContainerSC>
-          <VowlSC src='images/vowl2.png'/>
+          <VowlSC src='images/vowl2.png' alt='veggie vowl'/>
         </ImgContainerSC>
         </>
     )

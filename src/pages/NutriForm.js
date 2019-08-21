@@ -163,7 +163,7 @@ class NutriForm extends Component {
           {formPage === 2 ? <button type='submit' onClick={this.handleFormSubmit}>Enviar</button> : null }
           {formPage > 0 ? <button className='reversed' onClick={this.handleBack}>Atrás</button> : null }
           <ImgContainerSC>
-          <ImgSC src="./images/Food-icons/Vowl.png" alt=""/>
+          <ImgSC src="./images/Food-icons/Vowl.png" alt="veggie vowl illustration"/>
           </ImgContainerSC>
         </form>
 

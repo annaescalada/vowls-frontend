@@ -1,0 +1,76 @@
+[debug] [2019-08-21T14:37:52.798Z] ----------------------------------------------------------------------
+[debug] [2019-08-21T14:37:52.799Z] Command:       /Users/annaescalada/.nvm/versions/node/v12.8.0/bin/node /Users/annaescalada/.nvm/versions/node/v12.8.0/bin/firebase deploy
+[debug] [2019-08-21T14:37:52.800Z] CLI Version:   7.2.2
+[debug] [2019-08-21T14:37:52.800Z] Platform:      darwin
+[debug] [2019-08-21T14:37:52.800Z] Node Version:  v12.8.0
+[debug] [2019-08-21T14:37:52.801Z] Time:          Wed Aug 21 2019 16:37:52 GMT+0200 (GMT+02:00)
+[debug] [2019-08-21T14:37:52.801Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2019-08-21T14:37:52.805Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2019-08-21T14:37:52.806Z] > authorizing via signed-in user
+[debug] [2019-08-21T14:37:52.806Z] [iam] checking project vowls-dd706 for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2019-08-21T14:37:52.807Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/vowls-dd706:testIamPermissions  
+
+[debug] [2019-08-21T14:37:53.664Z] <<< HTTP RESPONSE 200
+[debug] [2019-08-21T14:37:53.668Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/vowls-dd706  
+ 
+[debug] [2019-08-21T14:37:53.914Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Deploying to 'vowls-dd706'...
+[info] 
+[info] i  deploying hosting
+[debug] [2019-08-21T14:37:53.917Z] >>> HTTP REQUEST POST https://firebasehosting.googleapis.com/v1beta1/sites/vowls-dd706/versions  
+
+[debug] [2019-08-21T14:37:54.880Z] <<< HTTP RESPONSE 500
+[debug] [2019-08-21T14:37:54.881Z] <<< HTTP RESPONSE BODY
+[error] 
+[error] Error: HTTP Error: 500, Internal error encountered.
+[debug] [2019-08-21T14:37:55.026Z] Error Context: {
+  "body": {
+    "error": {
+      "code": 500,
+      "message": "Internal error encountered.",
+      "status": "INTERNAL"
+    }
+  },
+  "response": {
+    "statusCode": 500,
+    "body": {
+      "error": {
+        "code": 500,
+        "message": "Internal error encountered.",
+        "status": "INTERNAL"
+      }
+    },
+    "headers": {
+      "vary": "X-Origin, Referer, Origin,Accept-Encoding",
+      "content-type": "application/json; charset=UTF-8",
+      "date": "Wed, 21 Aug 2019 14:37:54 GMT",
+      "server": "ESF",
+      "cache-control": "private",
+      "x-xss-protection": "0",
+      "x-frame-options": "SAMEORIGIN",
+      "x-content-type-options": "nosniff",
+      "alt-svc": "quic=\":443\"; ma=2592000; v=\"46,43,39\"",
+      "accept-ranges": "none",
+      "transfer-encoding": "chunked"
+    },
+    "request": {
+      "uri": {
+        "protocol": "https:",
+        "slashes": true,
+        "auth": null,
+        "host": "firebasehosting.googleapis.com",
+        "port": 443,
+        "hostname": "firebasehosting.googleapis.com",
+        "hash": null,
+        "search": null,
+        "query": null,
+        "pathname": "/v1beta1/sites/vowls-dd706/versions",
+        "path": "/v1beta1/sites/vowls-dd706/versions",
+        "href": "https://firebasehosting.googleapis.com/v1beta1/sites/vowls-dd706/versions"
+      },
+      "method": "POST"
+    }
+  }
+}

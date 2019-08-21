@@ -28,7 +28,7 @@ function Extra() {
         <ExtraContainerSC className='extra'>
             <ExtraTextSC>¡Felicidades!</ExtraTextSC>
             <ExtraTextSC><span>Hoy te has ganado un extra</span></ExtraTextSC>
-            <IconSC src='./images/Food-icons/extra.png'></IconSC>
+            <IconSC src='./images/Food-icons/extra.png' alt="Cupcake icon"></IconSC>
         </ExtraContainerSC>
     )
 }

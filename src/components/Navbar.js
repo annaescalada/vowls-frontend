@@ -34,8 +34,8 @@ class Navbar extends Component {
             <NavDivSC>
                 <div> 
                   {currentPath === '/vowls' ?
-                  <LogoImgSC src="../images/Menu-icons/Vowl-icon-pink.png" alt=""/>
-                  : <LogoImgSC src="../images/Menu-icons/Vowl-icon-grey.png" alt=""/>}
+                  <LogoImgSC src="../images/Menu-icons/Vowl-icon-pink.png" alt="pink vowl in menu"/>
+                  : <LogoImgSC src="../images/Menu-icons/Vowl-icon-grey.png" alt="grey vowl in menu"/>}
                 </div>
                 <MenuPSC>vowls</MenuPSC>
             </NavDivSC>
@@ -45,8 +45,8 @@ class Navbar extends Component {
             <NavDivSC>
               <div>
                 {currentPath === '/foods' ?
-                <LogoImgSC src="../images/Menu-icons/Food-icon-pink.png" alt=""/>
-                : <LogoImgSC src="../images/Menu-icons/Food-icon-grey.png" alt=""/>}
+                <LogoImgSC src="../images/Menu-icons/Food-icon-pink.png" alt="pink food in menu"/>
+                : <LogoImgSC src="../images/Menu-icons/Food-icon-grey.png" alt="grey food in menu"/>}
               </div>
               <MenuPSC>ingredientes</MenuPSC>
             </NavDivSC>
@@ -56,8 +56,8 @@ class Navbar extends Component {
             <NavDivSC>
               <div>
                 {currentPath === '/meals' ?
-                  <LogoImgSC src="../images/Menu-icons/Meal-icon-pink.png" alt=""/>
-                  :<LogoImgSC src="../images/Menu-icons/Meal-icon-grey.png" alt=""/> }
+                  <LogoImgSC src="../images/Menu-icons/Meal-icon-pink.png" alt="pink meal in menu"/>
+                  :<LogoImgSC src="../images/Menu-icons/Meal-icon-grey.png" alt="grey meal in menu"/> }
               </div>
               <MenuPSC>objetivo</MenuPSC>
             </NavDivSC>
@@ -67,8 +67,8 @@ class Navbar extends Component {
             <NavDivSC>
               <div>
                 {currentPath === '/profile' ?
-                  <LogoImgSC src="../images/Menu-icons/Profile-icon-pink.png" alt=""/>
-                  : <LogoImgSC src="../images/Menu-icons/Profile-icon-grey.png" alt=""/>}
+                  <LogoImgSC src="../images/Menu-icons/Profile-icon-pink.png" alt="pink profile in menu"/>
+                  : <LogoImgSC src="../images/Menu-icons/Profile-icon-grey.png" alt="grey profile in menu"/>}
               </div>
               <MenuPSC>perfil</MenuPSC>
             </NavDivSC>

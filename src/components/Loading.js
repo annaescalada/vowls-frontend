@@ -28,8 +28,8 @@ function Loading(props) {
     return (
         <LoadingContainer>
             <LoadingText>{props.text1}<span> {props.span} </span>{props.text2}</LoadingText>
-            <LoadingIcon className='loading' src="./images/Menu-icons/loading.png"></LoadingIcon>
-            <LoadingImg src="./images/Food-icons/Vowl.png" alt=""/>
+            <LoadingIcon className='loading' src="./images/Menu-icons/loading.png" alt="loading icon"></LoadingIcon>
+            <LoadingImg src="./images/Food-icons/Vowl.png" alt="veggie vowl illustration"/>
         </LoadingContainer>
     )
 }

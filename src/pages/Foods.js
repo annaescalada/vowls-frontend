@@ -74,7 +74,7 @@ class Foods extends Component {
           return (
             <FoodGroupsArticleSC key={index}>
               <FoodsContainerSC>
-                <IconSC src={foodGroupToIcon(group)} alt=""/>
+                <IconSC src={foodGroupToIcon(group)} alt={foodGroupToName(group)}/>
                 <FoodTitle>{foodGroupToName(group)}</FoodTitle>
               </FoodsContainerSC>
               {foods.map(food => {
