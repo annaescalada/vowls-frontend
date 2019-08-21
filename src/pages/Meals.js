@@ -42,6 +42,15 @@ class Meals extends Component {
         meals: newMeals,
       })
     }
+
+    mealsService.saveMeals( {newMeals} )
+    .then(() => {
+      console.log('meals updated');
+    })
+    .catch( error => {
+      console.log(error);
+    })
+    
     }
 
   handleNextClick = () => {
@@ -94,19 +103,6 @@ class Meals extends Component {
     }
     }) 
   }
-     
-
-  componentWillUnmount() {
-    const newMeals = this.state.meals;
-    mealsService.saveMeals( {newMeals} )
-    .then(() => {
-      console.log('meals updated');
-    })
-    .catch( error => {
-      console.log(error);
-    })
-  }
- 
 
   render () {
     const { meals, index } = this.state;

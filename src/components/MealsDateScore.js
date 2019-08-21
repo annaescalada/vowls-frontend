@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import Extra from './Extra';
 
 const DateScoreTextSC =styled.p`
   font-weight: 600;
@@ -37,7 +38,14 @@ function MealsDateScore(props) {
           <DateButtonSC disabled={props.index === props.lastIndex ? true : false }className={props.index === props.lastIndex ? 'disabledButton' :null } onClick={props.handleNextClick}>{'>'}</DateButtonSC>
         </DateContainerSC>
         <DateScoreTextSC>Puntuación:  <span>{ props.score } / { Object.keys(props.buttons).length }</span></DateScoreTextSC>
-        <progress value={ props.score } max={Object.keys(props.buttons).length}></progress>
+        { props.score === Object.keys(props.buttons).length ?
+          <progress value={ props.score } max={Object.keys(props.buttons).length}></progress>
+          : 
+          <>
+            <progress clasName="completed" value={ props.score } max={Object.keys(props.buttons).length}></progress>
+            <Extra></Extra>
+          </>
+        }
         </>
     )
 }
