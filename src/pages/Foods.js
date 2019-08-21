@@ -72,21 +72,21 @@ class Foods extends Component {
         <Instructions foods={true}></Instructions>
         {foodGroups.map((group, index) => {
           return (
-            <FoodGroupsArticleSC>
+            <FoodGroupsArticleSC key={index}>
               <FoodsContainerSC>
                 <IconSC src={foodGroupToIcon(group)} alt=""/>
                 <FoodTitle>{foodGroupToName(group)}</FoodTitle>
               </FoodsContainerSC>
               {foods.map(food => {
                 return (
-                  <>
+                  <React.Fragment key={food._id}>
                   {food.group === foodGroups[index] ?
                   <FoodsPortionContainerSC key={food._id}>
                     <p>{food.name}</p>
-                    <FoodPortion><span>{food.portion === 0 ? 'Libre' : `${food.portion * portionConvert(food.group,this.props.user.portion)} g`} </span></FoodPortion>
+                    <FoodPortion ><span>{food.portion === 0 ? 'Libre' : `${food.portion * portionConvert(food.group,this.props.user.portion)} g`} </span></FoodPortion>
                   </FoodsPortionContainerSC>
                   : null}
-                  </>
+                  </React.Fragment>
                 )
               })}
             </FoodGroupsArticleSC>

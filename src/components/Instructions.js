@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
-import { foodGroups, foodGroupToIcon, foodGroupToName, portionConvert} from '../helpers/foodConvert'
+import { foodGroups, foodGroupToIcon, foodGroupToName } from '../helpers/foodConvert'
 
 
 const QuestionMarkSC = styled.p`
@@ -62,16 +62,9 @@ class InstructionsMeals extends Component {
     }
 
 handleClickInstructions = () => {
-
-    if (this.state.instructions === false) {
     this.setState({
-        instructions:true,
+        instructions: !this.state.instructions,
     })
-    } else {
-        this.setState({
-        instructions:false,
-        })
-    }
     }
 
     render() {
@@ -91,9 +84,9 @@ handleClickInstructions = () => {
                 <InstructionsSubContainerSC>
                     <InstructionsTextSC>A continuación tienes los diferentes <span>grupos de alimentos repartidos a lo largo del día</span>. Cada icono corresponde a una ración. Para subir la puntuación, selecciona los alimentos a medida que los consumes.</InstructionsTextSC>
                     <FoodGroupContainerSC>
-                    {foodGroups.map(group => {
+                    {foodGroups.map((group, index) => {
                         return (
-                                <FoodGroupTitleSC>
+                                <FoodGroupTitleSC key={index}>
                                     <IconSC src={foodGroupToIcon(group)} alt={foodGroupToName(group)}/>
                                     <InstructionsTextSC>{foodGroupToName(group)}</InstructionsTextSC>
                                 </FoodGroupTitleSC>

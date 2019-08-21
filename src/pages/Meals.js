@@ -1,13 +1,12 @@
 import React, { Component } from 'react'
 import withAuth from '../components/withAuth.js';
 import Loading from '../components/Loading'
-import styled from 'styled-components'
 import Instructions from '../components/Instructions.js';
 import BasicMeals from '../components/BasicMeals.js';
 import MealsDateScore from '../components/MealsDateScore.js';
 import mealsService from '../services/meals-service';
 import {compareDates} from '../helpers/compareDates';
-import {basicMeal, testMeals} from '../helpers/mealTypes';
+import {basicMeal } from '../helpers/mealTypes';
 
 
 class Meals extends Component {
@@ -45,12 +44,11 @@ class Meals extends Component {
 
     mealsService.saveMeals( {newMeals} )
     .then(() => {
-      console.log('meals updated');
+      
     })
     .catch( error => {
       console.log(error);
     })
-    
     }
 
   handleNextClick = () => {
@@ -58,7 +56,6 @@ class Meals extends Component {
       const newIndex = this.state.index + 1;
       this.setState({index: newIndex });
     }
-    console.log('aquí')
   }
 
   handleBackClick = () => {
@@ -66,15 +63,12 @@ class Meals extends Component {
       const newIndex = this.state.index - 1;
       this.setState({index: newIndex });
     }
-    console.log('aquí');
   }
 
   componentDidMount() {
     this.props.me()
     .then(() => {
       let { meals } = this.props.user;
-
-    // let meals = testMeals;
       let lastMealDate = null;
 
       if (!meals[meals.length - 1]) {
@@ -106,8 +100,6 @@ class Meals extends Component {
 
   render () {
     const { meals, index } = this.state;
-
-    console.log(this.state);
     return (
     <>
     <section>

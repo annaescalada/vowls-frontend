@@ -29,7 +29,6 @@ const DateContainerSC = styled.div`
 `;
 
 function MealsDateScore(props) {
-  console.log(props)
     return (
         <>
         <DateContainerSC>
@@ -39,13 +38,13 @@ function MealsDateScore(props) {
         </DateContainerSC>
         <DateScoreTextSC>Puntuación:  <span>{ props.score } / { Object.keys(props.buttons).length }</span></DateScoreTextSC>
         { props.score === Object.keys(props.buttons).length ?
-          <progress value={ props.score } max={Object.keys(props.buttons).length}></progress>
-          : 
           <>
-            <progress clasName="completed" value={ props.score } max={Object.keys(props.buttons).length}></progress>
-            <Extra></Extra>
-          </>
-        }
+          <progress className='completed' value={ props.score } max={Object.keys(props.buttons).length}></progress>
+          <Extra></Extra>
+        </>
+          : 
+          <progress value={ props.score } max={Object.keys(props.buttons).length}></progress>
+          }
         </>
     )
 }

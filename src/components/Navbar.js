@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import withAuth from './withAuth.js';
 import styled from 'styled-components'
 import { withRouter } from "react-router";

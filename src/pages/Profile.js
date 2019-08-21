@@ -34,7 +34,6 @@ class Profile extends Component {
     const {GED, IMC, portion} = updateInfo(age, gender, weight, height, activity);
     this.props.update({ name, age, gender, weight, height, activity, GED, IMC, portion })
     .then( (user) => {
-      console.log(user);
       this.setState ({editing: false});
     })
     .catch( error => {
@@ -95,17 +94,19 @@ class Profile extends Component {
   }
 
   convertGender = (sex) => {
+    let gender;
     switch (sex) {
       case 'male':
-        return 'Hombre';
+        gender = 'Hombre';
         break;
       case 'female':
-        return 'Mujer';
+        gender = 'Mujer';
         break;
       default:
-        return 'Mujer';
+        gender = 'Mujer';
         break;
     }
+    return gender;
   }
 
 
@@ -143,7 +144,7 @@ class Profile extends Component {
         <p>Sexo:</p>
           {editing?
           <ActivitySelectSC name="gender" onChange={this.handleChange}>
-          <option selected disabled value={this.convertGender(gender)}>{this.convertGender(gender)}</option>
+          <option defaultValue disabled value={this.convertGender(gender)}>{this.convertGender(gender)}</option>
           <option  value='male'>Hombre</option>
           <option value='female'>Mujer</option>
         </ActivitySelectSC>
@@ -159,7 +160,7 @@ class Profile extends Component {
         <p>Nivel de actividad:</p>
         {editing? 
         <ActivitySelectSC name="activity" onChange={this.handleChange}>
-          <option selected disabled>{this.convertActivity(activity)}</option>
+          <option defaultValue disabled>{this.convertActivity(activity)}</option>
           <option  value={1.4}>Sedentario</option>
           <option value={1.6}>Leve</option>
           <option value={2}>Moderado</option>

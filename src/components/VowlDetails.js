@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import VowlChart from '../components/VowlChart'
-import { foodGroups, foodGroupToIcon, foodGroupToName} from '../helpers/foodConvert'
+import { foodGroupToName} from '../helpers/foodConvert'
 
 
 const SalsaSC = styled.img`

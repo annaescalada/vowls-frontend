@@ -200,3 +200,8 @@ progress[value]::-webkit-progress-value {
 progress.completed[value]::-webkit-progress-value {
   border-radius: 10px;
 }
+
+.extra {
+  width:100%!important;
+  background: repeating-linear-gradient( 45deg, #5cc1a408, #5cc1a408 10px, #5cc1a424 10px, #5cc1a424 20px )
+}

@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
-import styled from 'styled-components'
 
 import Navbar from './components/Navbar.js';
 import PrivateRoute from './components/PrivateRoute.js';
@@ -38,7 +37,6 @@ class App extends Component {
               <PrivateRoute exact path="/meals" component={Meals} />
               <PrivateRoute exact path="/profile" component={Profile} />
               <Route component={NotFound}/>
-      
             </Switch>
             </main>
           </div>

@@ -43,7 +43,7 @@ class NutriForm extends Component {
     gender: 'female',
     weight: '',
     height: '',
-    activity:1,
+    activity:1.4,
   }
 
   handleBack = (event) => {
@@ -128,7 +128,7 @@ class NutriForm extends Component {
         {formPage === 2 ?
         <FieldsetSC>
           <NutriTitleSC>Cuál es tu nivel de actividad física?</NutriTitleSC>
-          {!activity.length || activity === 1.4 ?
+          {!activity.length || activity === '1.4' ?
             <InputSC hidden id='activity1' type='radio' name='activity' value='1.4' onChange={this.handleChange} checked/> 
             : <InputSC hidden id='activity1' type='radio' name='activity' value='1.4' onChange={this.handleChange}/>
           }

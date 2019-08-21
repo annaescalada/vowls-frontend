@@ -9,7 +9,6 @@ import VowlDetails from '../components/VowlDetails';
 import VowlListCard from '../components/VowlListCard';
 import {InputSC} from '../pages/NutriForm';
 import styled from 'styled-components'
-import { processError } from '../helpers/processError'
 
 const SavedVowlTitleSC = styled.h3`
   font-weight: 600;
@@ -35,9 +34,7 @@ class Vowls extends Component {
 
     foods: [],
 
-    savedVowl: {},
-
-    error:''
+    savedVowl: {}
   } 
 
   handleChange = (event) => {  
@@ -55,7 +52,6 @@ class Vowls extends Component {
     const generatedVowl = randomVowl(this.state.foods);
     vowlsService.lastGeneratedVowl(generatedVowl)
     .then(() => {
-      console.log('meals updated');
       this.props.me();
       setTimeout(() => 
         this.setState({
@@ -137,7 +133,7 @@ class Vowls extends Component {
         isVowlShowing:true,
         vowl: this.props.user.lastGeneratedVowl,
       })
-    } else {console.log('no vowl')}
+    }
     this.setState({ 
       isLoading: false })
   }
@@ -157,7 +153,6 @@ class Vowls extends Component {
             <>
               <VowlDetails vowl={vowl}></VowlDetails>
               <InputSC placeholder='Nombre del vowl' id='name' type='text' name='name' value={this.state.name} onChange={this.handleChange}/>
-              {this.state.error? <p className='error'>{this.state.error}</p>: null}
               <button className="reversed" onClick={this.handleSaveVowlClick}>Guardar</button>
             </>
           : null }
@@ -176,13 +171,13 @@ class Vowls extends Component {
             <SearchBar value={this.state.search} onChange={this.handleChange}/>
           {!isLoading ?
           <>
-            {user.vowls.map(vowl => {
+            {user.vowls.map((vowl, index) => {
               return(
-                <>
+                <React.Fragment key={index}>
                   { vowl.name && vowl.name.includes(search)?
                   <VowlListCard vowl={vowl} handleDeleteVowl={this.handleDeleteVowl} handleCardClick={this.handleCardClick}></VowlListCard>
                   : null}
-                </>
+                </React.Fragment>
               )
             })}
           </>

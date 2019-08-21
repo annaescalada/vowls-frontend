@@ -25,10 +25,7 @@ class VowlsService {
 
   lastGeneratedVowl(vowl) {
     return this.vowls.put('/vowls/last-vowl', vowl)
-    .then(({ data }) => {
-      console.log(data);
-      return data;
-    });
+    .then(({ data }) => data);
   }
 
   deleteVowl(vowlID) {
