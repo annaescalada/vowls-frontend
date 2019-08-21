@@ -7,104 +7,97 @@ import BasicMeals from '../components/BasicMeals.js';
 import MealsDateScore from '../components/MealsDateScore.js';
 import mealsService from '../services/meals-service';
 import {compareDates} from '../helpers/compareDates';
-import authService from '../services/auth-service.js';
+import {basicMeal, testMeals} from '../helpers/mealTypes';
+
 
 class Meals extends Component {
   state ={
     isLoading: true,
-    buttons: { 
-      A: false, 
-      B: false, 
-      C: false, 
-      D: false, 
-      E: false, 
-      F: false, 
-      G: false,
-      H: false, 
-      I: false, 
-      J: false, 
-      K: false, 
-      L: false, 
-      M: false,
-      N: false,
-      O: false,
-      P: false,
-      Q: false,
-      R: false,
-      S: false,
-      T: false,
-      U: false,
-      V: false,
-      W: false },
-
-      score: 0,
-
-      date: new Date(2019, 12, 12),
-
-      instructions:false,
-
+    index:0,
+    meals:[],
+    today: new Date(),
+    instructions:false,
   } 
 
   handleClick = (key) => {
+    const {meals, index} = this.state;
+    const newDate = meals[index].date;
     let newScore;
-    if (this.state.buttons[key] === true) {
-      newScore = (this.state.score - 1);
+    let newButtons;
+    let newMeals;
+    if (meals[index].buttons[key] === true) {
+      newScore = (meals[index].score - 1);
+      newButtons = { ...meals[index].buttons, [key]: false};
+      newMeals = [...meals];
+      newMeals[index] = {date:newDate, score:newScore, buttons:newButtons}
       this.setState({
-        buttons: { ...this.state.buttons, [key]: false},
-        score: newScore,
+        meals: newMeals,
       })
-      
     } else {
-      newScore = (this.state.score + 1)
-
-        this.setState({
-          buttons: {...this.state.buttons, [key]: true},
-          score: newScore,
-        })
-      }
+      newScore = (meals[index].score + 1);
+      newButtons = { ...meals[index].buttons, [key]: true};
+      newMeals = [...meals];
+      newMeals[index] = {date:newDate, score:newScore, buttons:newButtons}
+      this.setState({
+        meals: newMeals,
+      })
     }
+    }
+
+  handleNextClick = () => {
+    if (this.state.index < this.state.meals.length-1) {
+      const newIndex = this.state.index + 1;
+      this.setState({index: newIndex });
+    }
+    console.log('aquí')
+  }
+
+  handleBackClick = () => {
+    if (this.state.index > 0) {
+      const newIndex = this.state.index - 1;
+      this.setState({index: newIndex });
+    }
+    console.log('aquí');
+  }
 
   componentDidMount() {
     this.props.me()
     .then(() => {
-      const { meals } = this.props.user;
-      let lastMealDate;
-  
-      if (meals[meals.length - 1]) {
-        lastMealDate = new Date(meals[meals.length - 1].date);
-      } else {lastMealDate = undefined}
-  
-      if (lastMealDate && compareDates(lastMealDate, this.state.date)) {
-        this.setState ({
-          buttons: meals[meals.length - 1].buttons,
-          score: meals[meals.length - 1].score,
+      let { meals } = this.props.user;
+
+    // let meals = testMeals;
+      let lastMealDate = null;
+
+      if (!meals[meals.length - 1]) {
+        meals.push(basicMeal);
+        setTimeout(()=> this.setState({
           isLoading:false,
-        })} else {
+          meals,
+          index: meals.length -1,
+        }) , 2000);
+      } else {
+        lastMealDate = new Date(meals[meals.length - 1].date);
+        if (!compareDates(lastMealDate, this.state.today)) {
+          meals.push(basicMeal);
           setTimeout(()=> this.setState({
-            isLoading:false
-          }) , 2000)
-        }
-    })
+            isLoading:false,
+            meals,
+            index: meals.length -1,
+          }) , 2000);
+        } else {
+        this.setState({
+          isLoading:false,
+          meals,
+          index: meals.length -1,
+        });
+      }
+    }
+    }) 
   }
+     
 
   componentWillUnmount() {
-    const { buttons, date, score } = this.state;
-    const currentMeal = { buttons, date, score };
-    
-    const { meals } = this.props.user;
-    const newMeals = [...meals];
-
-    let lastMealDate;
-    if (meals[meals.length - 1]) {
-      lastMealDate = new Date(meals[meals.length - 1].date);
-    } else {lastMealDate = undefined}
-
-    if (lastMealDate && compareDates(lastMealDate, currentMeal.date)) {
-      newMeals.splice([newMeals.length - 1], 1, currentMeal);
-    } else {
-      newMeals.push(currentMeal)
-    }
-
+    const newMeals = this.state.meals;
     mealsService.saveMeals( {newMeals} )
     .then(() => {
       console.log('meals updated');
@@ -116,15 +109,17 @@ class Meals extends Component {
  
 
   render () {
-    const { buttons, score } = this.state;
+    const { meals, index } = this.state;
+
+    console.log(this.state);
     return (
     <>
     <section>
       {!this.state.isLoading ?
       <>
-        <MealsDateScore date={this.state.date} score={score} buttons={buttons}></MealsDateScore>
+        <MealsDateScore date={new Date (meals[index].date)} score={meals[index].score} buttons={meals[index].buttons} index={index} lastIndex={meals.length - 1} handleNextClick={this.handleNextClick} handleBackClick={this.handleBackClick}></MealsDateScore>
         <Instructions meals={true}></Instructions>
-        <BasicMeals buttons={buttons} handleClick={this.handleClick} />
+        <BasicMeals buttons={meals[index].buttons} handleClick={this.handleClick} />
       </>
     
       : 
