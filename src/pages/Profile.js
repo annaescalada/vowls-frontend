@@ -4,6 +4,7 @@ import ChangePassword, { CancelSC } from '../components/ChangePassword.js';
 import styled from 'styled-components'
 import { InputSC } from './NutriForm.js';
 import {updateInfo} from '../helpers/updateInfo';
+import { processError } from '../helpers/processError'
 
 const DataContainerSC = styled.div`
   background-color: #c25c7824;
@@ -37,7 +38,7 @@ class Profile extends Component {
       this.setState ({editing: false});
     })
     .catch( error => {
-      this.setState ({error: 'Asegúrate de haber rellenado todos los campos e inténtalo de nuevo.'});
+      this.setState ({error: processError(error.response.status)});
       console.log(error);
     })
   }

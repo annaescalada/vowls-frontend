@@ -63,7 +63,9 @@ class ChangePassword extends Component {
               {editing ? <input type='submit' value='Guardar' /> : null}
             </form>
             {!editing? <button onClick={this.handleEditButton}>Editar contraseña</button> :null}
+
             {error? <p className='error'>{error}</p>: null}
+            
             {editing ? <CancelSC onClick= {this.handleCancel}>Cancelar</CancelSC> :null}
             <button className='reversed' onClick={this.props.logout} >Cerrar sesión</button>
             <button className='reversed' onClick={this.props.delete}>Eliminar cuenta</button>

@@ -3,6 +3,7 @@ import withAuth from '../components/withAuth.js';
 import styled from 'styled-components'
 import ProgressNutriBar from '../components/ProgressNutriBar.js';
 import {updateInfo} from '../helpers/updateInfo'
+import { processError } from '../helpers/processError'
 
  export const InputSC = styled.input`
   color: #c25c78!important;
@@ -80,7 +81,7 @@ class NutriForm extends Component {
     .then( () => {
     })
     .catch( error => {
-      this.setState ({error: 'Asegúrate de haber rellenado todos los campos e inténtalo de nuevo.'});
+      this.setState ({error: processError(error.response.status)});
       console.log(error);
     })
   }
