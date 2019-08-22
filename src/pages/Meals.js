@@ -7,6 +7,8 @@ import MealsDateScore from '../components/MealsDateScore.js';
 import mealsService from '../services/meals-service';
 import {compareDates} from '../helpers/compareDates';
 import {basicMeal } from '../helpers/mealTypes';
+import MealStatistics from '../components/MealStatistics.js';
+import { mealStatisticsConverter } from '../helpers/mealStatisticsConverter';
 
 
 class Meals extends Component {
@@ -16,6 +18,7 @@ class Meals extends Component {
     meals:[],
     today: new Date(),
     instructions:false,
+    statistics:false,
   } 
 
   handleClick = (key) => {
@@ -31,6 +34,7 @@ class Meals extends Component {
       newMeals[index] = {date:newDate, score:newScore, buttons:newButtons}
       this.setState({
         meals: newMeals,
+        statistics:false,
       })
     } else {
       newScore = (meals[index].score + 1);
@@ -39,6 +43,7 @@ class Meals extends Component {
       newMeals[index] = {date:newDate, score:newScore, buttons:newButtons}
       this.setState({
         meals: newMeals,
+        statistics: false,
       })
     }
 
@@ -53,15 +58,27 @@ class Meals extends Component {
   handleNextClick = () => {
     if (this.state.index < this.state.meals.length-1) {
       const newIndex = this.state.index + 1;
-      this.setState({index: newIndex });
+      this.setState({
+        statistics:false,
+        index: newIndex 
+      });
     }
   }
 
   handleBackClick = () => {
     if (this.state.index > 0) {
       const newIndex = this.state.index - 1;
-      this.setState({index: newIndex });
+      this.setState({
+        index: newIndex,
+        statistics: false,
+       });
     }
+  }
+
+  handleStatisticsClick = () => {
+    this.setState({
+      statistics: !this.state.statistics
+    })
   }
 
   componentDidMount() {
@@ -98,13 +115,17 @@ class Meals extends Component {
   }
 
   render () {
-    const { meals, index } = this.state;
+    const { meals, index, statistics } = this.state;
     return (
     <>
     <section>
       {!this.state.isLoading ?
       <>
         <MealsDateScore date={new Date (meals[index].date)} score={meals[index].score} buttons={meals[index].buttons} index={index} lastIndex={meals.length - 1} handleNextClick={this.handleNextClick} handleBackClick={this.handleBackClick}></MealsDateScore>
+        <p onClick={this.handleStatisticsClick}><span>Estadísticas últimos 7 días</span></p>
+        {statistics?
+        <MealStatistics meals={mealStatisticsConverter(meals)}></MealStatistics>
+        : null}
         <Instructions meals={true}></Instructions>
         <BasicMeals buttons={meals[index].buttons} handleClick={this.handleClick} />
       </>

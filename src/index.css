@@ -205,3 +205,11 @@ progress.completed[value]::-webkit-progress-value {
   width:100%!important;
   background: repeating-linear-gradient( 45deg, #5cc1a408, #5cc1a408 10px, #5cc1a424 10px, #5cc1a424 20px )
 }
+
+.apexcharts-menu-icon {
+  display: none;
+}
+
+#statistics {
+  width:90%;
+}

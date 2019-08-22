@@ -1,9 +1,6 @@
 import React, { Component } from "react";
 import ReactApexChart from "react-apexcharts";
 
-
-
-
 class PieChart extends Component {
 
 state = {
