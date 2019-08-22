@@ -4,14 +4,9 @@ import ChangePassword, { CancelSC } from '../components/ChangePassword.js';
 import styled from 'styled-components'
 import { InputSC } from './NutriForm.js';
 import {updateInfo} from '../helpers/updateInfo';
+import {convertActivity, convertGender} from '../helpers/convertInfoProfile';
 import { processError } from '../helpers/processError'
-
-const DataContainerSC = styled.div`
-  background-color: #c25c7824;
-  border-radius: 10px;
-  padding:6%;
-  text-align:center;
-`;
+import IMC from '../components/IMC.js';
 
 const ActivitySelectSC = styled.select`
   color: #c25c78!important;
@@ -68,76 +63,13 @@ class Profile extends Component {
       });
   }
 
-  convertActivity = (level) => {
-    let activity;
-    switch (level) {
-      case 1.4:
-      case '1.4':
-        activity = 'Sedentario';
-        break;
-      case 1.6:
-      case '1.6':
-        activity = 'Leve';
-        break;
-      case 2:
-      case '2':
-        activity = 'Moderado';
-        break;
-      case 2.4:
-      case '2.4':
-        activity = 'Muy activo';
-        break;
-      default:
-        activity = 'Sedentario';
-        break;
-    }
-    return activity;
-  }
-
-  convertGender = (sex) => {
-    let gender;
-    switch (sex) {
-      case 'male':
-        gender = 'Hombre';
-        break;
-      case 'female':
-        gender = 'Mujer';
-        break;
-      default:
-        gender = 'Mujer';
-        break;
-    }
-    return gender;
-  }
-
-
-
   render() {
     const  { user } = this.props;
     const { name, age, gender, weight, height, activity, editing, error } = this.state;
     return (
       <div>
         <h3>Hola <span>{name},</span></h3>
-        <DataContainerSC>
-          <p>Índice de masa corporal (<b>IMC</b>):</p>
-          <p>
-            <span>{user.IMC} </span>
-            {user.IMC <= 18.5 ? 
-            <span>(Infrapeso)</span> : null}
-            {user.IMC > 18.5 && user.IMC <= 24.9 ? 
-            <span>(Rango saludable)</span> : null}
-            {user.IMC > 24.9 && user.IMC <= 29.9 ? 
-            <span>(Sobrepeso)</span> : null}
-            {user.IMC > 29.9 && user.IMC <= 34.9 ? 
-            <span>(Obesidad de grado I)</span> : null}
-            {user.IMC > 34.9 && user.IMC <= 39.9 ? 
-            <span>(Obesidad de grado II)</span> : null}
-            {user.IMC > 39.9 ? 
-            <span>(Obesidad de grado III)</span> : null}
-          </p>
-          <p>Gasto energético dario (<b>GED</b>):</p>
-          <span>{user.GED} Kcal</span>
-        </DataContainerSC>
+        <IMC user={user}/>
         <p>Edad:</p>
           {editing?
           <InputSC id='age' type='text' name='age' value={age} onChange={this.handleChange}/>
@@ -145,11 +77,11 @@ class Profile extends Component {
         <p>Sexo:</p>
           {editing?
           <ActivitySelectSC name="gender" onChange={this.handleChange}>
-          <option defaultValue disabled value={this.convertGender(gender)}>{this.convertGender(gender)}</option>
+          <option defaultValue disabled value={convertGender(gender)}>{convertGender(gender)}</option>
           <option  value='male'>Hombre</option>
           <option value='female'>Mujer</option>
         </ActivitySelectSC>
-          : <InputSC id='gender' type='text' name='gender' value={this.convertGender(gender)} disabled/>}
+          : <InputSC id='gender' type='text' name='gender' value={convertGender(gender)} disabled/>}
         <p>Peso (Kg):</p>
           {editing?
           <InputSC id='weight' type='text' name='weight' value={weight} onChange={this.handleChange}/>
@@ -160,14 +92,13 @@ class Profile extends Component {
           : <InputSC id='height' type='text' name='height' value={height} disabled/>}
         <p>Nivel de actividad:</p>
         {editing? 
-        <ActivitySelectSC name="activity" onChange={this.handleChange}>
-          <option defaultValue disabled>{this.convertActivity(activity)}</option>
-          <option  value={1.4}>Sedentario</option>
+        <ActivitySelectSC value={activity} name="activity" onChange={this.handleChange}>
+          <option value={1.4}>Sedentario</option>
           <option value={1.6}>Leve</option>
           <option value={2}>Moderado</option>
           <option value={2.4}>Muy activo</option>
         </ActivitySelectSC>
-        : <InputSC id='activity' type='text' name='activity' value={this.convertActivity(activity)} disabled/>}
+        : <InputSC id='activity' type='text' name='activity' value={convertActivity(activity)} disabled/>}
 
           {editing ? <input onClick={this.handleFormSubmit} type='submit' value='Guardar' /> : null}
           {!editing? <button onClick={this.handleEditButton}>Editar información</button> :null}
